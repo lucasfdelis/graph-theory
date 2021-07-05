@@ -1,0 +1,3 @@
+[submodule "atividades_grafos"]
+	path = atividades_grafos
+	url = https://github.com/lucasfdelis/graph-theory.git
