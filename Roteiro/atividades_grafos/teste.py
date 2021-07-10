@@ -1,6 +1,5 @@
 from bibgrafo.grafo_lista_adjacencia import GrafoListaAdjacencia
 
-teste commit 
 from meu_grafo import MeuGrafo
 
 paraiba = MeuGrafo()
@@ -22,4 +21,12 @@ paraiba.adicionaAresta("a6", "C", "M")
 paraiba.adicionaAresta("a7", "C", "T")
 paraiba.adicionaAresta("a8", "M", "T")
 paraiba.adicionaAresta("a9", "T", "Z")
+
 print(paraiba)
+print(paraiba.ha_laco())
+print(paraiba.grau('C'))
+# print(paraiba.getAresta('a1JJ'))
+# print(paraiba.existeRotuloAresta('a2UJJ'))
+# print(paraiba.verticeValido('WRA')) 
+print(paraiba.eh_completo())
+print(paraiba.arestas_sobre_vertice('T'))
