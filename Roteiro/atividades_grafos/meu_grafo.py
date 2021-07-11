@@ -1,6 +1,6 @@
 from bibgrafo.grafo_lista_adjacencia import GrafoListaAdjacencia
 from bibgrafo.grafo_exceptions import *
-
+from itertools import combinations
 
 class MeuGrafo(GrafoListaAdjacencia):
 
@@ -10,8 +10,15 @@ class MeuGrafo(GrafoListaAdjacencia):
         Onde X, Z e W são vértices no grafo que não tem uma aresta entre eles.
         :return: Uma lista com os pares de vértices não adjacentes
         '''
-        pass # Apague essa instrução e inicie seu código aqui
-
+        N = self.N
+        lista = ['-'.join(x) for x in combinations(N, 2)]
+        for a in self.A:
+            if(f"{self.A[a].getV1()}-{self.A[a].getV2()}" in lista):
+                lista.remove(f"{self.A[a].getV1()}-{self.A[a].getV2()}")
+            if(f"{self.A[a].getV2()}-{self.A[a].getV1()}" in lista):
+                lista.remove(f"{self.A[a].getV2()}-{self.A[a].getV1()}")
+        return lista
+        
     def ha_laco(self):
         for a in self.A:
             if(self.A[a].getV1() == self.A[a].getV2()):
@@ -28,12 +35,14 @@ class MeuGrafo(GrafoListaAdjacencia):
         return grau
 
     def ha_paralelas(self):
-        '''
-        Verifica se há arestas paralelas no grafo
-        :return: Um valor booleano que indica se existem arestas paralelas no grafo.
-        '''
-        pass
-
+        for a in self.A:
+            aresta = [self.A[a].getV1(),self.A[a].getV2()]
+            for b in self.A:
+                if(b!=a):
+                    aresta2 = [self.A[b].getV1(),self.A[b].getV2()]
+                    if(sorted(aresta) == sorted(aresta2)):
+                        return True
+        return False
     def arestas_sobre_vertice(self, V):
         lista = []
         for a in self.A:
