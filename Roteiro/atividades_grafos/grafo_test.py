@@ -156,5 +156,3 @@ class TestGrafo(unittest.TestCase):
         self.assertFalse((self.g_l3.eh_completo()))
         self.assertFalse((self.g_l4.eh_completo()))
         self.assertFalse((self.g_l5.eh_completo()))
-if __name__ == '__main__':
-    unittest.main()

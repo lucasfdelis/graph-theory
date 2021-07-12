@@ -1,3 +1,4 @@
+import unittest
 from bibgrafo.grafo_lista_adjacencia import GrafoListaAdjacencia
 
 from meu_grafo import MeuGrafo
@@ -20,3 +21,5 @@ print(paraiba.grau('C'))
 print(paraiba.ha_paralelas())
 print(paraiba.arestas_sobre_vertice('C'))
 print(paraiba.eh_completo())
+
+unittest.main()
