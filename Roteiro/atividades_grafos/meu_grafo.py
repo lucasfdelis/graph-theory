@@ -20,12 +20,24 @@ class MeuGrafo(GrafoListaAdjacencia):
         return lista
         
     def ha_laco(self):
+        '''
+        Verifica se existe algum laço no grafo.
+        :return: Um valor booleano que indica se existe algum laço.
+        '''
         for a in self.A:
             if(self.A[a].getV1() == self.A[a].getV2()):
                 return True
         return False
         
     def grau(self, V):
+        '''
+        Provê o grau do vértice passado como parâmetro
+        :param V: O rótulo do vértice a ser analisado
+        :return: Um valor inteiro que indica o grau do vértice
+        :raises: VerticeInvalidoException se o vértice não existe no grafo
+        '''
+        if(V not in self.N):
+            raise(VerticeInvalidoException)
         grau = 0
         for a in self.A:
             if(self.A[a].getV1() == V):
@@ -35,6 +47,10 @@ class MeuGrafo(GrafoListaAdjacencia):
         return grau
 
     def ha_paralelas(self):
+        '''
+        Verifica se há arestas paralelas no grafo
+        :return: Um valor booleano que indica se existem arestas paralelas no grafo.
+        '''
         for a in self.A:
             aresta = [self.A[a].getV1(),self.A[a].getV2()]
             for b in self.A:
@@ -43,7 +59,16 @@ class MeuGrafo(GrafoListaAdjacencia):
                     if(sorted(aresta) == sorted(aresta2)):
                         return True
         return False
+
     def arestas_sobre_vertice(self, V):
+        '''
+        Provê uma lista que contém os rótulos das arestas que incidem sobre o vértice passado como parâmetro
+        :param V: O vértice a ser analisado
+        :return: Uma lista os rótulos das arestas que incidem sobre o vértice
+        :raises: VerticeInvalidoException se o vértice não existe no grafo
+        '''
+        if(V not in self.N):
+            raise(VerticeInvalidoException)
         lista = []
         for a in self.A:
             if(self.A[a].getV1() == V):
@@ -52,9 +77,11 @@ class MeuGrafo(GrafoListaAdjacencia):
                 lista.append(self.A[a].getRotulo())    
         return lista
 
-    
-
     def eh_completo(self):
+        '''
+        Verifica se o grafo é completo.
+        :return: Um valor booleano que indica se o grafo é completo
+        '''
         n = len(self.N)
         if(self.ha_laco()):
             return False

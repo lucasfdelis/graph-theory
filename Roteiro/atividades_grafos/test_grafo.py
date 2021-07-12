@@ -1,5 +1,5 @@
 import unittest
-from meu_grafo_matriz_adjacencia_nao_dir import *
+from meu_grafo import *
 from bibgrafo.grafo_exceptions import *
 
 class TestGrafo(unittest.TestCase):
@@ -14,6 +14,7 @@ class TestGrafo(unittest.TestCase):
         self.g_p.adicionaAresta('a5', 'P', 'C')
         self.g_p.adicionaAresta('a6', 'T', 'C')
         self.g_p.adicionaAresta('a7', 'M', 'C')
+        
         self.g_p.adicionaAresta('a8', 'M', 'T')
         self.g_p.adicionaAresta('a9', 'T', 'Z')
 
@@ -155,3 +156,5 @@ class TestGrafo(unittest.TestCase):
         self.assertFalse((self.g_l3.eh_completo()))
         self.assertFalse((self.g_l4.eh_completo()))
         self.assertFalse((self.g_l5.eh_completo()))
+if __name__ == '__main__':
+    unittest.main()
