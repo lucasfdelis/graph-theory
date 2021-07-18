@@ -129,10 +129,14 @@ class MeuGrafo(GrafoListaAdjacencia):
         return dfs
 
     def bfs(self, start):
+        cont = 0
+        self.aresta = []
+        vertices = deepcopy(self.N)
+        bfs = MeuGrafo(vertices)
+        self.lista_vertices = []
         for i in self.A:
             self.lista_vertices.append([self.A[i].getV1(), self.A[i].getV2(), i])
         grafo = self.vertices_adjacentes()
-        print(grafo)
         # keep track of all visited nodes
         explored = []
         # keep track of nodes to be checked
@@ -143,13 +147,29 @@ class MeuGrafo(GrafoListaAdjacencia):
             # pop shallowest node (first node) from queue
             node = queue.pop(0)
             if node not in explored:
-                print(node)
-                # add node to list of checked nodes
+            # add node to list of checked node
+                if(cont != 0):
+                 try:
+                  bfs.adicionaAresta(self.aresta[2], self.aresta[0], self.aresta[1])
+                 except:
+                  pass
+                cont = 1
                 explored.append(node)
-                neighbours = grafo[node]
- 
+                # neighbours = grafo[node]
+                # add node to list of checked nodes
+                for i in range(len(self.lista_vertices)):
+                    print(self.lista_vertices[i],node)
+                    if (node in self.lista_vertices[i]):
+                        self.aresta = self.lista_vertices[i]
+                        aresta2 = [self.aresta[0],self.aresta[1]]
+                        neighbours = aresta2
+
                 # add neighbours of node to queue
-                for neighbour in neighbours:
-                    queue.append(neighbour)
-        return explored
+                        for neighbour in neighbours:
+                            queue.append(neighbour)
+        try:
+         bfs.adicionaAresta(self.aresta[2], self.aresta[0], self.aresta[1])
+        except:
+         pass
+        return bfs
             
