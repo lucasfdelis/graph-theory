@@ -106,6 +106,8 @@ class MeuGrafo(GrafoListaAdjacencia):
         :param V: O vértice raiz por onde começará a busca.
         :return: Um grafo com todos os vértices de um grafo e as arestas necessárias para formar seu grafo de profundidade.
         '''
+        if(V not in self.N):
+            raise(VerticeInvalidoException)
         def dfs_rec(V, visitado):
             visitado.append(V)
             if(self.cont != 0):
@@ -127,49 +129,72 @@ class MeuGrafo(GrafoListaAdjacencia):
         visitado = []
         dfs_rec(V, visitado)
         return dfs
-
-    def bfs(self, start):
-        cont = 0
-        self.aresta = []
+    # def bfs(self, V): 
+    #     '''
+    #     Busca o grafo de profundidade a partir de um vértice V.
+    #     :param V: O vértice raiz por onde começará a busca.
+    #     :return: Um grafo com todos os vértices de um grafo e as arestas necessárias para formar seu grafo de profundidade.
+    #     '''
+    #     if(V not in self.N):
+    #         raise(VerticeInvalidoException)
+    #     def dfs_rec(V, visitado):
+    #         visitado.append(V)
+    #         if(self.cont != 0):
+    #             dfs.adicionaAresta(self.aresta[2], self.aresta[0], self.aresta[1])
+    #         self.cont = 1
+    #         for i in range(len(self.lista_vertices)):
+    #             if (V in self.lista_vertices[i]):
+    #                 self.aresta = self.lista_vertices[i]
+    #                 aresta2 = [self.aresta[0],self.aresta[1]]
+    #                 for neighbour in aresta2:
+    #                     if neighbour not in visitado:
+    #                         dfs_rec(neighbour, visitado)
+    #     self.cont = 0
+    #     vertices = deepcopy(self.N)
+    #     dfs = MeuGrafo(vertices)
+    #     self.lista_vertices = []
+    #     for i in self.A:
+    #         self.lista_vertices.append([self.A[i].getV1(), self.A[i].getV2(), i])
+    #     visitado = []
+    #     dfs_rec(V, visitado)
+    #     return dfs
+    
+    def bfs(self,V):
+        visited = []
+        queue = [V]
         vertices = deepcopy(self.N)
         bfs = MeuGrafo(vertices)
         self.lista_vertices = []
         for i in self.A:
             self.lista_vertices.append([self.A[i].getV1(), self.A[i].getV2(), i])
-        grafo = self.vertices_adjacentes()
-        # keep track of all visited nodes
-        explored = []
-        # keep track of nodes to be checked
-        queue = [start]
- 
-        # keep looping until there are nodes still to be checked
+        cont = 0
         while queue:
-            # pop shallowest node (first node) from queue
             node = queue.pop(0)
-            if node not in explored:
-            # add node to list of checked node
-                if(cont != 0):
-                 try:
-                  bfs.adicionaAresta(self.aresta[2], self.aresta[0], self.aresta[1])
-                 except:
-                  pass
-                cont = 1
-                explored.append(node)
-                # neighbours = grafo[node]
-                # add node to list of checked nodes
-                for i in range(len(self.lista_vertices)):
-                    print(self.lista_vertices[i],node)
-                    if (node in self.lista_vertices[i]):
-                        self.aresta = self.lista_vertices[i]
-                        aresta2 = [self.aresta[0],self.aresta[1]]
-                        neighbours = aresta2
-
-                # add neighbours of node to queue
-                        for neighbour in neighbours:
-                            queue.append(neighbour)
-        try:
-         bfs.adicionaAresta(self.aresta[2], self.aresta[0], self.aresta[1])
-        except:
-         pass
+            if node not in visited:
+                print(node)
+                visited.append(node)
+                #print(visited)
+                cont = 0
+                for edge in self.lista_vertices:
+                    print(edge)
+                    if edge[0] == node:
+                        print("============UM")
+                        queue.append(edge[1])
+                        queue = list(dict.fromkeys(queue))
+                        if(cont == 0):
+                            try:
+                                bfs.adicionaAresta(edge[2], edge[0], edge[1])
+                            except:
+                                pass
+                        cont = 1
+                    elif edge[1] == node:
+                        print("============DOIS")
+                        queue.append(edge[0])
+                        queue = list(dict.fromkeys(queue))
+                        if(cont == 0):
+                            try:
+                                bfs.adicionaAresta(edge[2], edge[0], edge[1])
+                            except:
+                                pass
+                        cont = 1
         return bfs
-            

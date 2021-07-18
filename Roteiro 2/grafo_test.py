@@ -88,6 +88,7 @@ class TestGrafo(unittest.TestCase):
         self.g_nd.adicionaAresta('a15', 'D', 'E')
         self.g_nd.adicionaAresta('a16', 'B', 'D')
         self.g_nd.adicionaAresta('a17', 'B', 'E')
+
     def test_adiciona_aresta(self):
         self.assertTrue(self.g_p.adicionaAresta('a10', 'J', 'C'))
         with self.assertRaises(ArestaInvalidaException):
@@ -207,6 +208,33 @@ class TestGrafo(unittest.TestCase):
         self.assertEqual(list(self.g_nd.dfs('K').A),['a4', 'a2', 'a1', 'a11', 'a10', 'a13', 'a14', 'a15', 'a3', 'a7'])
         with self.assertRaises(VerticeInvalidoException):
             self.g_p.arestas_sobre_vertice('A')
+
+    def test_bfs(self):
+        self.assertEqual(list(self.g_p.bfs('C').A),['a1', 'a2', 'a4', 'a6', 'a7', 'a9'])
+        self.assertEqual(list(self.g_p.bfs('E').A),['a2', 'a1', 'a4', 'a6', 'a7', 'a9'])
+        self.assertEqual(list(self.g_p.bfs('J').A),['a1', 'a2', 'a4', 'a6', 'a7', 'a9'])
+        # self.assertEqual(list(self.g_p.bfs('M').A),['a7', 'a8', 'a1', 'a2', 'a4', 'a9'])
+        self.assertEqual(list(self.g_p.bfs('P').A),['a4', 'a1', 'a2', 'a6', 'a7', 'a9'])
+        # self.assertEqual(list(self.g_p.bfs('T').A),['a6', 'a8', 'a9', 'a1', 'a2', 'a4'])
+        # self.assertEqual(list(self.g_p.bfs('Z').A),['a9', 'a6', 'a8', 'a1', 'a2', 'a4'])
+
+        self.assertEqual(list(self.g_nd.bfs('A').A),['a1', 'a2', 'a3', 'a11', 'a13', 'a16', 'a17', 'a10', 'a4', 'a8'])
+        self.assertEqual(list(self.g_nd.bfs('B').A),['a1', 'a11', 'a12', 'a13', 'a16', 'a17', 'a3', 'a4', 'a8', 'a9'])
+        self.assertEqual(list(self.g_nd.bfs('C').A),['a13', 'a14', 'a1', 'a11', 'a12', 'a17', 'a3', 'a4', 'a8', 'a9'])
+        self.assertEqual(list(self.g_nd.bfs('D').A),['a14', 'a15', 'a16', 'a1', 'a11', 'a12', 'a3', 'a4', 'a8', 'a9'])
+        self.assertEqual(list(self.g_nd.bfs('E').A),['a15', 'a17', 'a14', 'a1', 'a11', 'a12', 'a3', 'a4', 'a8', 'a9'])
+        self.assertEqual(list(self.g_nd.bfs('F').A),['a10', 'a11', 'a9', 'a2', 'a4', 'a6', 'a8', 'a13', 'a16', 'a17'])
+        self.assertEqual(list(self.g_nd.bfs('G').A),['a2', 'a4', 'a6', 'a8', 'a9', 'a12', 'a11', 'a13', 'a16', 'a17'])
+        self.assertEqual(list(self.g_nd.bfs('H').A),['a9', 'a10', 'a2', 'a4', 'a6', 'a8', 'a12', 'a13', 'a16', 'a17'])
+        self.assertEqual(list(self.g_nd.bfs('I').A),['a7', 'a8', 'a3', 'a5', 'a1', 'a11', 'a13', 'a16', 'a17', 'a10'])
+        self.assertEqual(list(self.g_nd.bfs('J').A),['a3', 'a5', 'a6', 'a7', 'a1', 'a11', 'a13', 'a16', 'a17', 'a10'])
+        self.assertEqual(list(self.g_nd.bfs('K').A),['a4', 'a5', 'a2', 'a8', 'a9', 'a12', 'a11', 'a13', 'a16', 'a17'])
+
+        self.assertEqual(list(self.g_l1.bfs('A').A),['a2'])
+        self.assertEqual(list(self.g_l2.bfs('A').A),['a1'])
+        self.assertEqual(list(self.g_l3.bfs('C').A),['a1'])
+        self.assertEqual(list(self.g_l4.bfs('D').A),[])
+        self.assertEqual(list(self.g_l5.bfs('C').A),['a1'])
 
 if __name__ == '__main__':
     unittest.main()
