@@ -43,13 +43,14 @@ class Graph:
             # dequeued vertex s. If a adjacent
             # has not been visited, then mark it
             # visited and enqueue it
-            print(self)
+            #print(self)
             for i in self.graph[s]:
-                #print('')
+                print(s)
+                print(type(self.graph))
                 if visited[i] == False:
                     queue.append(i)
                     visited[i] = True
-            print(self.graph)
+            #print(self.graph)
  
 # Driver code
  

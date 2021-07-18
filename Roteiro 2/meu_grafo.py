@@ -2,6 +2,7 @@ from bibgrafo.grafo_lista_adjacencia import GrafoListaAdjacencia
 from bibgrafo.grafo_exceptions import *
 from itertools import combinations
 from copy import deepcopy
+from collections import defaultdict
 
 class MeuGrafo(GrafoListaAdjacencia):
 
@@ -90,6 +91,14 @@ class MeuGrafo(GrafoListaAdjacencia):
             if(n*(n-1)/2 == len(self.A)):
                 return True
             return False
+    
+    def vertices_adjacentes(self):
+        dicionario = self.N
+        conexoes = defaultdict(list)
+        for a in self.A:
+            conexoes[self.A[a].getV1()].append(self.A[a].getV2())
+            conexoes[self.A[a].getV2()].append(self.A[a].getV1())
+        return conexoes
 
     def dfs(self, V): 
         '''
@@ -119,30 +128,28 @@ class MeuGrafo(GrafoListaAdjacencia):
         dfs_rec(V, visitado)
         return dfs
 
-    def bfs(self, V):
-        vertices = deepcopy(self.N)
-        bfs = MeuGrafo(vertices)
-        self.lista_vertices = []
+    def bfs(self, start):
         for i in self.A:
             self.lista_vertices.append([self.A[i].getV1(), self.A[i].getV2(), i])
-        visited = []
-        for i in self.N:
-            visited.append(False)
-        queue = []
-        queue.append(V)
-        for i in range(len(self.N)):
-            if(V in self.N[i]):
-                visited[i] = True
+        grafo = self.vertices_adjacentes()
+        print(grafo)
+        # keep track of all visited nodes
+        explored = []
+        # keep track of nodes to be checked
+        queue = [start]
+ 
+        # keep looping until there are nodes still to be checked
         while queue:
-            s = queue.pop(0)
-            print(s, end = " ")
-            print(visited)
-            for i in range(len(self.lista_vertices)):
-                print(V, self.lista_vertices[i])
-                if(V in self.lista_vertices[i]):
-                    print(i)
-                    print(visited[i])
-                    if visited[i] == False:
-                        queue.append(V)
-                        visited[i] = True
-            print(self)
+            # pop shallowest node (first node) from queue
+            node = queue.pop(0)
+            if node not in explored:
+                print(node)
+                # add node to list of checked nodes
+                explored.append(node)
+                neighbours = grafo[node]
+ 
+                # add neighbours of node to queue
+                for neighbour in neighbours:
+                    queue.append(neighbour)
+        return explored
+            
