@@ -92,109 +92,83 @@ class MeuGrafo(GrafoListaAdjacencia):
                 return True
             return False
     
-    def vertices_adjacentes(self):
-        dicionario = self.N
-        conexoes = defaultdict(list)
-        for a in self.A:
-            conexoes[self.A[a].getV1()].append(self.A[a].getV2())
-            conexoes[self.A[a].getV2()].append(self.A[a].getV1())
-        return conexoes
-
     def dfs(self, V): 
         '''
-        Busca o grafo de profundidade a partir de um vértice V.
-        :param V: O vértice raiz por onde começará a busca.
-        :return: Um grafo com todos os vértices de um grafo e as arestas necessárias para formar seu grafo de profundidade.
+        Cria um grafo que contém as arestas do dfs
+        :param V: O vértice raiz que inicia a busca
+        :return: Um grafo DFS.
+        :raises: VerticeInvalidoException se o vértice não existe no grafo
         '''
         if(V not in self.N):
             raise(VerticeInvalidoException)
+
         def dfs_rec(V, visitado):
+
             visitado.append(V)
-            if(self.cont != 0):
+            if(self.eh_inicio == False):
                 dfs.adicionaAresta(self.aresta[2], self.aresta[0], self.aresta[1])
-            self.cont = 1
+            self.eh_inicio = False
+
             for i in range(len(self.lista_vertices)):
                 if (V in self.lista_vertices[i]):
                     self.aresta = self.lista_vertices[i]
                     aresta2 = [self.aresta[0],self.aresta[1]]
-                    for neighbour in aresta2:
-                        if neighbour not in visitado:
-                            dfs_rec(neighbour, visitado)
-        self.cont = 0
+                    for vizinho in aresta2:
+                        if vizinho not in visitado:
+                            dfs_rec(vizinho, visitado)
+
+        
+
         vertices = deepcopy(self.N)
         dfs = MeuGrafo(vertices)
+        visitado = []
+
         self.lista_vertices = []
+        self.eh_inicio = True
+
         for i in self.A:
             self.lista_vertices.append([self.A[i].getV1(), self.A[i].getV2(), i])
-        visitado = []
+        
         dfs_rec(V, visitado)
         return dfs
-    # def bfs(self, V): 
-    #     '''
-    #     Busca o grafo de profundidade a partir de um vértice V.
-    #     :param V: O vértice raiz por onde começará a busca.
-    #     :return: Um grafo com todos os vértices de um grafo e as arestas necessárias para formar seu grafo de profundidade.
-    #     '''
-    #     if(V not in self.N):
-    #         raise(VerticeInvalidoException)
-    #     def dfs_rec(V, visitado):
-    #         visitado.append(V)
-    #         if(self.cont != 0):
-    #             dfs.adicionaAresta(self.aresta[2], self.aresta[0], self.aresta[1])
-    #         self.cont = 1
-    #         for i in range(len(self.lista_vertices)):
-    #             if (V in self.lista_vertices[i]):
-    #                 self.aresta = self.lista_vertices[i]
-    #                 aresta2 = [self.aresta[0],self.aresta[1]]
-    #                 for neighbour in aresta2:
-    #                     if neighbour not in visitado:
-    #                         dfs_rec(neighbour, visitado)
-    #     self.cont = 0
-    #     vertices = deepcopy(self.N)
-    #     dfs = MeuGrafo(vertices)
-    #     self.lista_vertices = []
-    #     for i in self.A:
-    #         self.lista_vertices.append([self.A[i].getV1(), self.A[i].getV2(), i])
-    #     visitado = []
-    #     dfs_rec(V, visitado)
-    #     return dfs
-    
-    def bfs(self,V):
-        visited = []
-        queue = [V]
+
+    def bfs(self, V): 
+        '''
+        Cria um grafo que contém as arestas do bfs
+        :param V: O vértice raiz que inicia a busca
+        :return: Um grafo BFS.
+        :raises: VerticeInvalidoException se o vértice não existe no grafo
+        '''
+        if(V not in self.N):
+            raise(VerticeInvalidoException)
+            
         vertices = deepcopy(self.N)
         bfs = MeuGrafo(vertices)
+        visitado = [V]
+
         self.lista_vertices = []
         for i in self.A:
             self.lista_vertices.append([self.A[i].getV1(), self.A[i].getV2(), i])
-        cont = 0
-        while queue:
-            node = queue.pop(0)
-            if node not in visited:
-                print(node)
-                visited.append(node)
-                #print(visited)
-                cont = 0
-                for edge in self.lista_vertices:
-                    print(edge)
-                    if edge[0] == node:
-                        print("============UM")
-                        queue.append(edge[1])
-                        queue = list(dict.fromkeys(queue))
-                        if(cont == 0):
-                            try:
-                                bfs.adicionaAresta(edge[2], edge[0], edge[1])
-                            except:
-                                pass
-                        cont = 1
-                    elif edge[1] == node:
-                        print("============DOIS")
-                        queue.append(edge[0])
-                        queue = list(dict.fromkeys(queue))
-                        if(cont == 0):
-                            try:
-                                bfs.adicionaAresta(edge[2], edge[0], edge[1])
-                            except:
-                                pass
-                        cont = 1
+
+        fila = []
+        rotulos = []
+        fila.append(V)
+
+        for a in self.A:
+                rotulos.append(self.A[a].getRotulo())
+        
+        while fila:
+            s = fila.pop(0)
+
+            for i in range(len(self.lista_vertices)):
+                if(s in self.lista_vertices[i]):
+                    aresta = self.lista_vertices[i]
+                    aresta2 = [aresta[0],aresta[1]]
+
+                    for i in aresta2:
+                        if i not in visitado:
+                            bfs.adicionaAresta(aresta[2], aresta[0], aresta[1])
+                            fila.append(i)
+                            fila = list(dict.fromkeys(fila))
+                            visitado.append(i)
         return bfs
