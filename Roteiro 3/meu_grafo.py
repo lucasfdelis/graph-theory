@@ -193,39 +193,33 @@ class MeuGrafo(GrafoListaAdjacencia):
         visited =[]
         path = []
         teste = ''
-        teste2 = ''
         self.lista_vertices = []
         self.eh_inicio = True
+
         for i in self.A:
             self.lista_vertices.append([self.A[i].getV1(), self.A[i].getV2(), i])
 
         def printAllPathsUtil(u, d, visited, path,teste):
-         visited.append(u)
-         if(self.eh_inicio == False):
-             path.append(teste)
-         self.eh_inicio = False
-         path.append(u)
-         if(u == d):
-             teste2 = path
-          print(teste2)
-         else:
-              for i in range(len(self.lista_vertices)):
-                 if (u in self.lista_vertices[i]):
-                     self.aresta = self.lista_vertices[i]
-                     aresta2 = [self.aresta[0],self.aresta[1]]
-                     for i in aresta2:
-                      if i not in visited:
-                        teste=self.aresta[2]
-                        printAllPathsUtil(i, d, visited, path,teste)
-              path.remove(u)
-              try:
-               path.remove(teste)
-              except:
-        #     print("A")
-               pass
-         return teste2
-         # print('FINAL:',self.teste2)
-         # return self.teste2
+            visited.append(u)
+            if(self.eh_inicio == False):
+                path.append(teste)
+            self.eh_inicio = False
+            path.append(u)
+         
+            if(u == d):
+                return path
+            else:
+                for i in range(len(self.lista_vertices)):
+                    if (u in self.lista_vertices[i]):
+                        self.aresta = self.lista_vertices[i]
+                        aresta2 = [self.aresta[0],self.aresta[1]]
+                        for i in aresta2:
+                            if i not in visited:
+                                teste=self.aresta[2]
+                                return printAllPathsUtil(i, d, visited, path,teste)
+            
+                path.remove(u)
+                path.remove(teste)
+
         printAllPathsUtil(s, d, visited, path,teste)
-        #return self.teste2
-        return teste2
+        return path

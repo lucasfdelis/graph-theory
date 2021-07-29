@@ -15,7 +15,7 @@ paraiba.adicionaAresta("a7", "M", "C")
 paraiba.adicionaAresta("a8", "M", "T")
 paraiba.adicionaAresta("a9", "T", "Z")
 
-a = paraiba.printAllPaths('P', 'M')
+a = paraiba.printAllPaths('P', 'Z')
 
 # rint(paraiba.caminho(4))
 # a = paraiba.conexo()
