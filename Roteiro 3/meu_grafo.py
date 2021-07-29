@@ -113,7 +113,7 @@ class MeuGrafo(GrafoListaAdjacencia):
                 if (V in self.lista_vertices[i]):
                     self.aresta = self.lista_vertices[i]
                     aresta2 = [self.aresta[0],self.aresta[1]]
-                    for vizinho in aresta2:
+                    for vizinho in aresta2: 
                         if vizinho not in visitado:
                             dfs_rec(vizinho, visitado)
 
@@ -186,5 +186,46 @@ class MeuGrafo(GrafoListaAdjacencia):
             return True
         return False
 
+    
 
-        
+    def printAllPaths(self, s, d):
+
+        visited =[]
+        path = []
+        teste = ''
+        teste2 = ''
+        self.lista_vertices = []
+        self.eh_inicio = True
+        for i in self.A:
+            self.lista_vertices.append([self.A[i].getV1(), self.A[i].getV2(), i])
+
+        def printAllPathsUtil(u, d, visited, path,teste):
+         visited.append(u)
+         if(self.eh_inicio == False):
+             path.append(teste)
+         self.eh_inicio = False
+         path.append(u)
+         if(u == d):
+             teste2 = path
+          print(teste2)
+         else:
+              for i in range(len(self.lista_vertices)):
+                 if (u in self.lista_vertices[i]):
+                     self.aresta = self.lista_vertices[i]
+                     aresta2 = [self.aresta[0],self.aresta[1]]
+                     for i in aresta2:
+                      if i not in visited:
+                        teste=self.aresta[2]
+                        printAllPathsUtil(i, d, visited, path,teste)
+              path.remove(u)
+              try:
+               path.remove(teste)
+              except:
+        #     print("A")
+               pass
+         return teste2
+         # print('FINAL:',self.teste2)
+         # return self.teste2
+        printAllPathsUtil(s, d, visited, path,teste)
+        #return self.teste2
+        return teste2

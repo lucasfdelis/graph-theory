@@ -15,9 +15,10 @@ paraiba.adicionaAresta("a7", "M", "C")
 paraiba.adicionaAresta("a8", "M", "T")
 paraiba.adicionaAresta("a9", "T", "Z")
 
-# print(paraiba.dfs('J'))
-# print(paraiba.bfs('J'))
-a = paraiba.conexo()
+a = paraiba.printAllPaths('P', 'M')
+
+# rint(paraiba.caminho(4))
+# a = paraiba.conexo()
 print(a)
 
 unittest.main()
