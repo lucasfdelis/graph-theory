@@ -186,55 +186,54 @@ class MeuGrafo(GrafoListaAdjacencia):
             return True
         return False
 
-    
+    def __caminho_print(self, s, d):
 
-    def printAllPaths(self, s, d):
-
-        visited =[]
-        path = []
-        teste = ''
+        self.visited =[]
+        self.path = []
+        val = []
+        aresta = ''
         self.lista_vertices = []
         self.eh_inicio = True
 
         for i in self.A:
             self.lista_vertices.append([self.A[i].getV1(), self.A[i].getV2(), i])
 
-        def printAllPathsUtil(u, d, visited, path,teste):
+        def __caminho_print_rec(u, d, aresta):
 
-            visited.append(u)
+            self.visited.append(u)
             if(self.eh_inicio == False):
-                path.append(teste)
+                self.path.append(aresta)
             self.eh_inicio = False
-            path.append(u)
+            self.path.append(u)
          
             if(u == d):
-                print(path)
+                print(self.path)
             else:
                 for i in range(len(self.lista_vertices)):
                     if (u in self.lista_vertices[i]):
                         self.aresta = self.lista_vertices[i]
                         aresta2 = [self.aresta[0],self.aresta[1]]
                         for i in aresta2:
-                            if i not in visited:
-                                teste=self.aresta[2]
-                                printAllPathsUtil(i, d, visited, path,teste)
+                            if i not in self.visited:
+                                aresta = self.aresta[2]
+                                __caminho_print_rec(i, d, aresta)
                 try:
-                    path.remove(u)
-                    path.remove(teste)
+                    self.path.remove(u)
+                    self.path.remove(aresta)
                 except:
                     pass
         
         sys.stdout = io.StringIO()
-        printAllPathsUtil(s, d, visited, path,teste)
+        __caminho_print_rec(s, d, aresta)
         val = sys.stdout.getvalue()
         sys.stdout = sys.__stdout__
-        val =eval(val)
+        val = eval(val)
         return val
     
     def caminho(self,n):
         N = self.N
         lista = [''.join(x) for x in permutations(N, 2)]
         for i in lista:
-            path = self.printAllPaths(i[0],i[1])
+            path = self.__caminho_print(i[0],i[1])
             if len(path) == n * 2 + 1:
                 return path
