@@ -3,22 +3,22 @@ from bibgrafo.grafo_lista_adjacencia import GrafoListaAdjacencia
 
 from meu_grafo import MeuGrafo
 
-paraiba = MeuGrafo(['J', 'C', 'E', 'P', 'M', 'T', 'Z'])
 
-paraiba.adicionaAresta("a1", "J", "C")
-paraiba.adicionaAresta("a2", "C", "E")
-paraiba.adicionaAresta("a3", "C", "E")
-paraiba.adicionaAresta("a4", "P", "C")
-paraiba.adicionaAresta("a5", "P", "C")
-paraiba.adicionaAresta("a6", "T", "C")
-paraiba.adicionaAresta("a7", "M", "C")
-paraiba.adicionaAresta("a8", "M", "T")
-paraiba.adicionaAresta("a9", "T", "Z")
+g_c = MeuGrafo(['J', 'C', 'E', 'P'])
+g_c.adicionaAresta('a1','J','C')
+g_c.adicionaAresta('a2', 'J', 'E')
+g_c.adicionaAresta('a3', 'J', 'P')
+g_c.adicionaAresta('a4', 'E', 'C')
+g_c.adicionaAresta('a5', 'P', 'C')
+g_c.adicionaAresta('a6', 'P', 'E')
 
-a = paraiba.printAllPaths('P', 'Z')
-
-# rint(paraiba.caminho(4))
-# a = paraiba.conexo()
-print(a)
+# print(type(a))
+# # rint(g_p_sem_paralelas.caminho(4))
+# # a = g_p_sem_paralelas.conexo()
+print(g_c.caminho(1))
+print(g_c.caminho(2))
+print(g_c.caminho(3))
+print(g_c.caminho(4))
+print(g_c.caminho(5))
 
 unittest.main()

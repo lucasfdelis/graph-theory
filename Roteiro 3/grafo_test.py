@@ -241,8 +241,32 @@ class TestGrafo(unittest.TestCase):
         self.assertFalse(self.g_l1.conexo())
         self.assertFalse(self.g_l3.conexo())
         self.assertTrue(self.g_nd.conexo())
-    
-    
 
+    def test_caminho(self):
+        self.assertEqual(self.g_p.caminho(1), ['J', 'a1', 'C'])
+        self.assertEqual(self.g_p.caminho(2), ['J', 'a1', 'C', 'a2', 'E'])
+        self.assertEqual(self.g_p.caminho(3), ['J', 'a1', 'C', 'a6', 'T', 'a8', 'M'])
+        self.assertEqual(self.g_p.caminho(4))
+        self.assertFalse(self.g_p.caminho(5))
+
+        self.assertEqual(self.g_p_sem_paralelas.caminho(1), ['J', 'a1', 'C'])
+        self.assertEqual(self.g_p_sem_paralelas.caminho(2), ['J', 'a1', 'C', 'a2', 'E'])
+        self.assertEqual(self.g_p_sem_paralelas.caminho(3), ['J', 'a1', 'C', 'a4', 'T', 'a6', 'M'])
+        self.assertEqual(self.g_p_sem_paralelas.caminho(4))
+        self.assertFalse(self.g_p_sem_paralelas.caminho(5))
+
+        self.assertEqual(self.g_c.caminho(1), ['J', 'a1', 'C', 'a4', 'E', 'a6', 'P'])
+        self.assertFalse(self.g_c.caminho(2))
+        self.assertEqual(self.g_c.caminho(3), ['J', 'a1', 'C', 'a4', 'E', 'a6', 'P'])
+        self.assertEqual(self.g_c.caminho(4), ['J', 'a1', 'C', 'a4', 'E', 'a6', 'P'])
+        self.assertFalse(self.g_c.caminho(5))
+
+        self.assertEqual(self.g_nd.caminho(1), ['A', 'a1', 'B', 'a11', 'F'])
+        self.assertEqual(self.g_nd.caminho(2))
+        self.assertEqual(self.g_nd.caminho(3), ['A', 'a1', 'B', 'a11', 'F'])
+        self.assertEqual(self.g_nd.caminho(4), ['G', 'a2', 'A', 'a3', 'J', 'a5', 'K'])
+        self.assertEqual(self.g_nd.caminho(5), ['G', 'a2', 'A', 'a3', 'J', 'a5', 'K'])
+        self.assertEqual(self.g_nd.caminho(6), ['B', 'a1', 'A', 'a2', 'G', 'a4', 'K', 'a5', 'J', 'a7', 'I'])
+    
 if __name__ == '__main__':
     unittest.main()

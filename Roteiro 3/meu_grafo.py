@@ -1,8 +1,8 @@
 from bibgrafo.grafo_lista_adjacencia import GrafoListaAdjacencia
 from bibgrafo.grafo_exceptions import *
-from itertools import combinations
+from itertools import combinations, permutations
 from copy import deepcopy
-from collections import defaultdict
+import sys, io
 
 class MeuGrafo(GrafoListaAdjacencia):
 
@@ -200,6 +200,7 @@ class MeuGrafo(GrafoListaAdjacencia):
             self.lista_vertices.append([self.A[i].getV1(), self.A[i].getV2(), i])
 
         def printAllPathsUtil(u, d, visited, path,teste):
+
             visited.append(u)
             if(self.eh_inicio == False):
                 path.append(teste)
@@ -207,7 +208,7 @@ class MeuGrafo(GrafoListaAdjacencia):
             path.append(u)
          
             if(u == d):
-                return path
+                print(path)
             else:
                 for i in range(len(self.lista_vertices)):
                     if (u in self.lista_vertices[i]):
@@ -216,10 +217,24 @@ class MeuGrafo(GrafoListaAdjacencia):
                         for i in aresta2:
                             if i not in visited:
                                 teste=self.aresta[2]
-                                return printAllPathsUtil(i, d, visited, path,teste)
-            
-                path.remove(u)
-                path.remove(teste)
-
+                                printAllPathsUtil(i, d, visited, path,teste)
+                try:
+                    path.remove(u)
+                    path.remove(teste)
+                except:
+                    pass
+        
+        sys.stdout = io.StringIO()
         printAllPathsUtil(s, d, visited, path,teste)
-        return path
+        val = sys.stdout.getvalue()
+        sys.stdout = sys.__stdout__
+        val =eval(val)
+        return val
+    
+    def caminho(self,n):
+        N = self.N
+        lista = [''.join(x) for x in permutations(N, 2)]
+        for i in lista:
+            path = self.printAllPaths(i[0],i[1])
+            if len(path) == n * 2 + 1:
+                return path
