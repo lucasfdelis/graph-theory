@@ -239,12 +239,17 @@ class TestGrafo(unittest.TestCase):
         self.assertTrue(self.g_p_sem_paralelas.conexo())
         self.assertTrue(self.g_c.conexo())
         self.assertFalse(self.g_l1.conexo())
+        self.assertFalse(self.g_l2.conexo())
         self.assertFalse(self.g_l3.conexo())
+        self.assertTrue(self.g_l4.conexo())
+        self.assertTrue(self.g_l5.conexo())
         self.assertTrue(self.g_nd.conexo())
 
     def test_caminho(self):
+        self.assertEqual(self.g_d.caminho(1), ['A', 'asd', 'B'])
+
         self.assertEqual(self.g_p.caminho(1), ['J', 'a1', 'C'])
-        self.assertEqual(self.g_p.caminho(2), ['J', 'a1', 'C', 'a2', 'E'])
+        self.assertEqual(self.g_p.caminho(2), ['J', 'a1', 'C', 'a6', 'T'])
         self.assertEqual(self.g_p.caminho(3), ['J', 'a1', 'C', 'a6', 'T', 'a8', 'M'])
 
         self.assertEqual(self.g_p_sem_paralelas.caminho(1), ['J', 'a1', 'C'])
@@ -256,24 +261,25 @@ class TestGrafo(unittest.TestCase):
         self.assertEqual(self.g_c.caminho(3), ['J', 'a1', 'C', 'a4', 'E', 'a6', 'P'])
 
         self.assertEqual(self.g_nd.caminho(1), ['A', 'a1', 'B'])
-        self.assertEqual(self.g_nd.caminho(2), ['A', 'a1', 'B', 'a11', 'F'])
-        self.assertEqual(self.g_nd.caminho(3), ['A', 'a1', 'B', 'a11', 'F', 'a10', 'H'])
-        self.assertEqual(self.g_nd.caminho(4), ['A', 'a1', 'B', 'a11', 'F', 'a10', 'H', 'a9', 'G'])
+        self.assertEqual(self.g_nd.caminho(2), ['A', 'a1', 'B', 'a13', 'C'])
+        self.assertEqual(self.g_nd.caminho(3), ['A', 'a1', 'B', 'a13', 'C', 'a14', 'D'])
+        self.assertEqual(self.g_nd.caminho(4), ['A', 'a1', 'B', 'a13', 'C', 'a14', 'D', 'a15', 'E'])
         self.assertEqual(self.g_nd.caminho(5), ['A', 'a1', 'B', 'a11', 'F', 'a10', 'H', 'a9', 'G', 'a4', 'K'])
         self.assertEqual(self.g_nd.caminho(6), ['A', 'a1', 'B', 'a11', 'F', 'a10', 'H', 'a9', 'G', 'a4', 'K', 'a5', 'J'])
         self.assertEqual(self.g_nd.caminho(7), ['A', 'a1', 'B', 'a11', 'F', 'a10', 'H', 'a9', 'G', 'a4', 'K', 'a5', 'J', 'a7', 'I'])
         self.assertEqual(self.g_nd.caminho(8), ['E', 'a15', 'D', 'a14', 'C', 'a13', 'B', 'a1', 'A', 'a2', 'G', 'a4', 'K', 'a5', 'J', 'a7', 'I'])
 
     def test_ha_ciclo(self):
-        # self.assertEqual(self.g_p.ha_ciclo(), ['C', 'a3', 'E', 'a2', 'C'])
-        # self.assertEqual(self.g_p_sem_paralelas.ha_ciclo(), ['C', 'a5', 'M', 'a6', 'T', 'a4', 'C'])
-        # self.assertEqual(self.g_c.ha_ciclo(), ['J', 'a2', 'E', 'a4', 'C', 'a1', 'J'])
-        self.assertEqual(self.g_nd.ha_ciclo(), ['A', 'a1', 'B'])
-        # self.assertEqual(self.g_l1.ha_ciclo(), ['J', 'a1', 'C'])
-        # self.assertEqual(self.g_l2.ha_ciclo(), ['J', 'a1', 'C'])
-        # self.assertEqual(self.g_l3.ha_ciclo(), ['J', 'a1', 'C'])
-        # self.assertEqual(self.g_l4.ha_ciclo(), ['J', 'a1', 'C'])
-        # self.assertEqual(self.g_l5.ha_ciclo(), ['J', 'a1', 'C'])
+        self.assertEqual(self.g_p.ha_ciclo(), ['C', 'a3', 'E', 'a2', 'C'])
+        self.assertEqual(self.g_p_sem_paralelas.ha_ciclo(), ['C', 'a5', 'M', 'a6', 'T', 'a4', 'C'])
+        self.assertEqual(self.g_c.ha_ciclo(), ['J', 'a2', 'E', 'a4', 'C', 'a1', 'J'])
+        self.assertEqual(self.g_nd.ha_ciclo(), ['A', 'a2', 'G', 'a9', 'H', 'a10', 'F', 'a11', 'B', 'a1', 'A'])
+        self.assertEqual(self.g_l1.ha_ciclo(), ['A', 'a1', 'A'])
+        self.assertEqual(self.g_l2.ha_ciclo(), ['A', 'a3', 'B', 'a1', 'A'])
+        self.assertEqual(self.g_l3.ha_ciclo(),['C', 'a2', 'C'])
+        self.assertEqual(self.g_l4.ha_ciclo(), ['D', 'a1', 'D'])
+        self.assertEqual(self.g_l5.ha_ciclo(), ['C', 'a2', 'C'])
+        self.assertFalse(self.g_d.ha_ciclo())
         
 if __name__ == '__main__':
     unittest.main()
