@@ -186,7 +186,7 @@ class MeuGrafo(GrafoListaAdjacencia):
             return True
         return False
 
-    def __caminho_print(self, s, d):
+    def caminho_dois_vertices(self, s, d):
 
         self.visited =[]
         self.path = []
@@ -198,13 +198,14 @@ class MeuGrafo(GrafoListaAdjacencia):
         for i in self.A:
             self.lista_vertices.append([self.A[i].getV1(), self.A[i].getV2(), i])
 
-        def __caminho_print_rec(u, d, aresta):
+        def caminho_dois_vertices_rec(u, d, aresta):
 
             self.visited.append(u)
             if(self.eh_inicio == False):
                 self.path.append(aresta)
             self.eh_inicio = False
             self.path.append(u)
+            #print(self.path)
          
             if(u == d):
                 print(self.path)
@@ -216,15 +217,16 @@ class MeuGrafo(GrafoListaAdjacencia):
                         for i in aresta2:
                             if i not in self.visited:
                                 aresta = self.aresta[2]
-                                __caminho_print_rec(i, d, aresta)
+                                caminho_dois_vertices_rec(i, d, aresta)
+                self.path.remove(u)
                 try:
-                    self.path.remove(u)
+                    
                     self.path.remove(aresta)
                 except:
                     pass
         
         sys.stdout = io.StringIO()
-        __caminho_print_rec(s, d, aresta)
+        caminho_dois_vertices_rec(s, d, aresta)
         val = sys.stdout.getvalue()
         sys.stdout = sys.__stdout__
         val = eval(val)
@@ -234,6 +236,42 @@ class MeuGrafo(GrafoListaAdjacencia):
         N = self.N
         lista = [''.join(x) for x in permutations(N, 2)]
         for i in lista:
-            path = self.__caminho_print(i[0],i[1])
+            path = self.caminho_dois_vertices(i[0],i[1])
             if len(path) == n * 2 + 1:
                 return path
+    
+    def ha_ciclo(self):
+        visitado = []
+        for V in self.N:
+            visitado.append(V)
+            arestas_paralelas = []
+            if(len(self.arestas_sobre_vertice(V))>1):
+                for aresta in self.arestas_sobre_vertice(V):
+                    if(self.A[aresta].getV1() == V):
+                        arestas_paralelas.append(self.A[aresta].getV2())
+                    if(self.A[aresta].getV2() == V):
+                        arestas_paralelas.append(self.A[aresta].getV1())
+            arestas_paralelas_2 = []
+            for i in arestas_paralelas:
+                if(len(self.arestas_sobre_vertice(i))>1):
+                    arestas_paralelas_2.append(i)
+            if(len(arestas_paralelas_2)>1):
+             for i in self.A:
+                try:
+                 if([V,arestas_paralelas_2[0]] == [self.A[i].getV1(),self.A[i].getV2()]):
+                    grafo = deepcopy(self)
+                    grafo.removeAresta(i)
+                    ciclo = grafo.caminho_dois_vertices(self.A[i].getV1(),self.A[i].getV2())
+                    ciclo.append(i)
+                    ciclo.append(self.A[i].getV1())
+                    return ciclo
+                 if([V,arestas_paralelas_2[0]] == [self.A[i].getV2(),self.A[i].getV1()]):
+                    grafo = deepcopy(self)
+                    grafo.removeAresta(i)
+                    ciclo = grafo.caminho_dois_vertices(self.A[i].getV2(),self.A[i].getV1())
+                    ciclo.append(i)
+                    ciclo.append(self.A[i].getV2())
+                    return ciclo
+                except:
+                    pass
+        return False

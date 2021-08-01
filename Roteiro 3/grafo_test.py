@@ -263,6 +263,17 @@ class TestGrafo(unittest.TestCase):
         self.assertEqual(self.g_nd.caminho(6), ['A', 'a1', 'B', 'a11', 'F', 'a10', 'H', 'a9', 'G', 'a4', 'K', 'a5', 'J'])
         self.assertEqual(self.g_nd.caminho(7), ['A', 'a1', 'B', 'a11', 'F', 'a10', 'H', 'a9', 'G', 'a4', 'K', 'a5', 'J', 'a7', 'I'])
         self.assertEqual(self.g_nd.caminho(8), ['E', 'a15', 'D', 'a14', 'C', 'a13', 'B', 'a1', 'A', 'a2', 'G', 'a4', 'K', 'a5', 'J', 'a7', 'I'])
-    
+
+    def test_ha_ciclo(self):
+        # self.assertEqual(self.g_p.ha_ciclo(), ['C', 'a3', 'E', 'a2', 'C'])
+        # self.assertEqual(self.g_p_sem_paralelas.ha_ciclo(), ['C', 'a5', 'M', 'a6', 'T', 'a4', 'C'])
+        # self.assertEqual(self.g_c.ha_ciclo(), ['J', 'a2', 'E', 'a4', 'C', 'a1', 'J'])
+        self.assertEqual(self.g_nd.ha_ciclo(), ['A', 'a1', 'B'])
+        # self.assertEqual(self.g_l1.ha_ciclo(), ['J', 'a1', 'C'])
+        # self.assertEqual(self.g_l2.ha_ciclo(), ['J', 'a1', 'C'])
+        # self.assertEqual(self.g_l3.ha_ciclo(), ['J', 'a1', 'C'])
+        # self.assertEqual(self.g_l4.ha_ciclo(), ['J', 'a1', 'C'])
+        # self.assertEqual(self.g_l5.ha_ciclo(), ['J', 'a1', 'C'])
+        
 if __name__ == '__main__':
     unittest.main()
