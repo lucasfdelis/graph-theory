@@ -14,6 +14,6 @@ paraiba.adicionaAresta("a6", "C", "M")
 paraiba.adicionaAresta("a7", "C", "T")
 paraiba.adicionaAresta("a8", "M", "T")
 paraiba.adicionaAresta("a9", "T", "Z")
-print(paraiba.grau('C'))
+print(paraiba.vertices_nao_adjacentes())
 
 #unittest.main()

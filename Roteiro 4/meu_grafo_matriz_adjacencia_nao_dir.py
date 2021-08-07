@@ -10,7 +10,12 @@ class MeuGrafo(GrafoMatrizAdjacenciaNaoDirecionado):
         Onde X, Z e W são vértices no grafo que não tem uma aresta entre eles.
         :return: Uma lista com os pares de vértices não adjacentes
         '''
-        pass
+        lista = []
+        for i in range(len(self.M)):
+            for j in range(len(self.M)):
+                if(i < j and len(self.M[i][j])==0):
+                    lista.append(f'{self.N[i]}-{self.N[j]}')
+        return lista
 
     def ha_laco(self):
         '''
@@ -51,7 +56,11 @@ class MeuGrafo(GrafoMatrizAdjacenciaNaoDirecionado):
         Verifica se há arestas paralelas no grafo
         :return: Um valor booleano que indica se existem arestas paralelas no grafo.
         '''
-        pass
+        for i in range(len(self.M)):
+            for j in range(len(self.M)):
+                if (len(self.M[i][j])>1):
+                    return True
+        return False
 
     def arestas_sobre_vertice(self, V):
         '''
@@ -67,6 +76,12 @@ class MeuGrafo(GrafoMatrizAdjacenciaNaoDirecionado):
         Verifica se o grafo é completo.
         :return: Um valor booleano que indica se o grafo é completo
         '''
-        pass
+        if(self.ha_laco()):
+            return False
+        for i in range(len(self.M)):
+            for j in range(len(self.M)):
+                if (i < j and len(self.M[i][j])==0):
+                    return False
+        return True
 
 
