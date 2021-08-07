@@ -69,7 +69,19 @@ class MeuGrafo(GrafoMatrizAdjacenciaNaoDirecionado):
         :return: Uma lista os rótulos das arestas que incidem sobre o vértice
         :raises: VerticeInvalidoException se o vértice não existe no grafo
         '''
-        pass
+        if(V not in self.N):
+            raise(VerticeInvalidoException)
+        lista = []
+        for i in range(len(self.M)):
+            for j in range(len(self.M)):
+                if (len(self.M[i][j])>0):
+                    for a in (self.M[i][j]):
+                        if(self.N[i] == V and a!='-'):
+                            lista.append(a)
+                        if(self.N[j] == V and a!='-'):
+                            lista.append(a)
+        return lista
+
 
     def eh_completo(self):
         '''
