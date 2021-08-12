@@ -308,70 +308,61 @@ class MeuGrafo(GrafoListaAdjacencia):
             if(self.A[a].getV2() == v):
                 lista.append(self.A[a].getV1())           
         return lista    
+    def ehEuleriano(self):
+        if(self.conexo() == False):
+            return 0
+        else:
+            grau = 0
+            for i in self.N:
+                if(self.grau(i) %2 != 0):
+                    grau = grau+1
+        if grau == 0:
+            return 2
+        elif grau == 2:
+            return 1
+        elif grau > 2:
+            return 0
 
-    def contadorDFS(self, v, visitado):
-        contador = 1
-        visitado.append(v)
-        
-        for i in range(len(self.lista_vertices)):
-            if (v in self.lista_vertices[i]):
-                self.aresta = self.lista_vertices[i]
-                aresta2 = [self.aresta[0],self.aresta[1]]
-                for vizinho in aresta2:
-                    if(vizinho not in visitado):
-                        contador = contador+self.contadorDFS(vizinho, visitado)
-        return contador
-    
-    def arestaValidaEuler(self,u,v):
-        aresta_remov = []
+    def arestaValidaEuler(self,a):
+        u = self.A[a].getV1()
+        v = self.A[a].getV2()
+
         if(self.vertices_adjacentes(u) == [v]):
             return True
         else:
-            visitado = []
-            contador1 = self.contadorDFS(u,visitado)
-            for a in self.A:
-                if self.A[a].getV1() == u and self.A[a].getV2() == v:
-                    aresta_remov = [self.A[a].getV1(), self.A[a].getV2(), a]
-                    print(aresta_remov)
-                    self.removeAresta(aresta_remov[2])
-                    
-                    visitado = []
-                    contador2 = self.contadorDFS(u,visitado)
-                    self.adicionaAresta(aresta_remov[2],aresta_remov[0],aresta_remov[1])
-                    return False if contador1 > contador2 else True
-            
+            contador1 = self.dfs(u)
+            self.removeAresta(a)
+            contador2 = self.dfs(u)
+            self.adicionaAresta(a,u,v)
+            return False if len(contador1.N) > len(contador2.N) else True
+                       
     def exibirEuler(self,u):
-
         for i in range(len(self.lista_vertices)):
             if (u in self.lista_vertices[i]):
                 self.aresta1 = self.lista_vertices[i]
-                aresta2 = [self.aresta1[0],self.aresta1[1]]
-                for v in aresta2:
-                    if self.arestaValidaEuler(u,v):
-                        print(self.aresta1[2])
-                        self.removeAresta(self.aresta1[2])
-                        self.exibirEuler(v)
+                self.lista_vertices.pop(i)
+                for v in self.aresta1:
+                    if(u != v):
+                        if self.arestaValidaEuler(self.aresta1[2]):
+                            print(self.aresta1)
+                            self.visitados.append(self.aresta1[2])
+                            self.removeAresta(self.aresta1[2])
+                            # print(self.lista_vertices)
+                            #if(len(self.visitados == len(self.A))):
+                                
+                            self.exibirEuler(v)
     
+    #funciona
     def exibirCaminho(self):
-
+        self.visitados = []
         u = 0
 
         self.lista_vertices = []
         for i in self.A:
             self.lista_vertices.append([self.A[i].getV1(), self.A[i].getV2(), i])
-        
-        for j in self.N:
-            for i in range(len(self.lista_vertices)):
-                if (j in self.lista_vertices[i]):
-                    self.aresta1 = self.lista_vertices[i]
-                    a2 = self.aresta1[2]
-            for i in self.A[a2]:
-                if(len(self.vertices_adjacentes(self.A[i].getV1())) %2 != 0):
-                    u = self.A[i].getV1()  
-                    break     
-                if(len(self.vertices_adjacentes(self.A[i].getV2())) %2 != 0):
-                    u = self.A[i].getV2()
-                    break
-        print("\n")
-        self.exibirEuler(u)
-            
+
+        for i in self.N:
+            if(self.grau(i) %2 != 0):
+                u = i
+                break
+        self.exibirEuler(u)            
