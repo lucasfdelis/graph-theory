@@ -294,10 +294,25 @@ class MeuGrafo(GrafoListaAdjacencia):
         if(len(self.N) == len(visitados)):
             return True
         return False
-    
+    def vertices_adjacentes(self,v):
+        '''
+        Provê uma lista de vértices adjacentes a um vértice dado como parametro. A lista terá o seguinte formato: [X,Y,W...]
+        Onde X, Z e W são vértices no grafo que tem uma aresta entre o vértice V.
+        :return: Uma lista com os pares de vértices adjacentes
+        '''
+        N = self.N
+        lista = []
+        for a in self.A:
+            if(self.A[a].getV1() == v):
+                lista.append(self.A[a].getV2())
+            if(self.A[a].getV2() == v):
+                lista.append(self.A[a].getV1())           
+        return lista    
+
     def contadorDFS(self, v, visitado):
         contador = 1
         visitado.append(v)
+        
         for i in range(len(self.lista_vertices)):
             if (v in self.lista_vertices[i]):
                 self.aresta = self.lista_vertices[i]
@@ -307,4 +322,56 @@ class MeuGrafo(GrafoListaAdjacencia):
                         contador = contador+self.contadorDFS(vizinho, visitado)
         return contador
     
-    #def arestaValidaEuler(self,u,v):
+    def arestaValidaEuler(self,u,v):
+        aresta_remov = []
+        if(self.vertices_adjacentes(u) == [v]):
+            return True
+        else:
+            visitado = []
+            contador1 = self.contadorDFS(u,visitado)
+            for a in self.A:
+                if self.A[a].getV1() == u and self.A[a].getV2() == v:
+                    aresta_remov = [self.A[a].getV1(), self.A[a].getV2(), a]
+                    print(aresta_remov)
+                    self.removeAresta(aresta_remov[2])
+                    
+                    visitado = []
+                    contador2 = self.contadorDFS(u,visitado)
+                    self.adicionaAresta(aresta_remov[2],aresta_remov[0],aresta_remov[1])
+                    return False if contador1 > contador2 else True
+            
+    def exibirEuler(self,u):
+
+        for i in range(len(self.lista_vertices)):
+            if (u in self.lista_vertices[i]):
+                self.aresta1 = self.lista_vertices[i]
+                aresta2 = [self.aresta1[0],self.aresta1[1]]
+                for v in aresta2:
+                    if self.arestaValidaEuler(u,v):
+                        print(self.aresta1[2])
+                        self.removeAresta(self.aresta1[2])
+                        self.exibirEuler(v)
+    
+    def exibirCaminho(self):
+
+        u = 0
+
+        self.lista_vertices = []
+        for i in self.A:
+            self.lista_vertices.append([self.A[i].getV1(), self.A[i].getV2(), i])
+        
+        for j in self.N:
+            for i in range(len(self.lista_vertices)):
+                if (j in self.lista_vertices[i]):
+                    self.aresta1 = self.lista_vertices[i]
+                    a2 = self.aresta1[2]
+            for i in self.A[a2]:
+                if(len(self.vertices_adjacentes(self.A[i].getV1())) %2 != 0):
+                    u = self.A[i].getV1()  
+                    break     
+                if(len(self.vertices_adjacentes(self.A[i].getV2())) %2 != 0):
+                    u = self.A[i].getV2()
+                    break
+        print("\n")
+        self.exibirEuler(u)
+            
