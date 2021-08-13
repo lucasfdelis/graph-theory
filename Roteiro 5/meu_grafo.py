@@ -294,6 +294,7 @@ class MeuGrafo(GrafoListaAdjacencia):
         if(len(self.N) == len(visitados)):
             return True
         return False
+
     def vertices_adjacentes(self,v):
         '''
         Provê uma lista de vértices adjacentes a um vértice dado como parametro. A lista terá o seguinte formato: [X,Y,W...]
@@ -308,6 +309,7 @@ class MeuGrafo(GrafoListaAdjacencia):
             if(self.A[a].getV2() == v):
                 lista.append(self.A[a].getV1())           
         return lista    
+
     def ehEuleriano(self):
         if(self.conexo() == False):
             return 0
@@ -325,11 +327,11 @@ class MeuGrafo(GrafoListaAdjacencia):
 
     def arestaValidaEuler(self,a):
         lista_arestas = []
+
         for i in self.A:
             lista_arestas.append(i)
-        #print(lista_arestas,a)
+
         if(a not in lista_arestas):
-            #print('b')
             return 0
 
         u = self.A[a].getV1()
@@ -354,19 +356,22 @@ class MeuGrafo(GrafoListaAdjacencia):
                         if(self.arestaValidaEuler(self.aresta1[2]))==0:
                             return 0
                         if self.arestaValidaEuler(self.aresta1[2]):
-                            print(self.aresta1)
-                            self.visitados.append(u)
-                            self.visitados.append(self.aresta1[2])
-                            self.visitados.append(v)
+                            if(len(self.visitados)>1):
+                                #if(self.visitados[-1] == u):
+                           # self.visitados.append(u)
+                                    self.visitados.append(self.aresta1[2])
+                                    self.visitados.append(v)
+                            if(len(self.visitados)==0):
+                                self.visitados.append(u)
+                                self.visitados.append(self.aresta1[2])
+                                self.visitados.append(v)
                             self.removeAresta(self.aresta1[2])
-                            # print(self.lista_vertices)
-                            #if(len(self.visitados == len(self.A))):
-                                
                             self.exibirEuler(v)
                         
     
-    #funciona
     def exibirCaminho(self):
+        if(self.ehEuleriano() == 0):
+            return "O grafo não é euleriano"
         self.visitados = []
         u = 0
 
