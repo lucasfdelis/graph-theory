@@ -324,6 +324,14 @@ class MeuGrafo(GrafoListaAdjacencia):
             return 0
 
     def arestaValidaEuler(self,a):
+        lista_arestas = []
+        for i in self.A:
+            lista_arestas.append(i)
+        #print(lista_arestas,a)
+        if(a not in lista_arestas):
+            #print('b')
+            return 0
+
         u = self.A[a].getV1()
         v = self.A[a].getV2()
 
@@ -343,14 +351,19 @@ class MeuGrafo(GrafoListaAdjacencia):
                 self.lista_vertices.pop(i)
                 for v in self.aresta1:
                     if(u != v):
+                        if(self.arestaValidaEuler(self.aresta1[2]))==0:
+                            return 0
                         if self.arestaValidaEuler(self.aresta1[2]):
                             print(self.aresta1)
+                            self.visitados.append(u)
                             self.visitados.append(self.aresta1[2])
+                            self.visitados.append(v)
                             self.removeAresta(self.aresta1[2])
                             # print(self.lista_vertices)
                             #if(len(self.visitados == len(self.A))):
                                 
                             self.exibirEuler(v)
+                        
     
     #funciona
     def exibirCaminho(self):
@@ -365,4 +378,5 @@ class MeuGrafo(GrafoListaAdjacencia):
             if(self.grau(i) %2 != 0):
                 u = i
                 break
-        self.exibirEuler(u)            
+        self.exibirEuler(u)
+        return self.visitados            
