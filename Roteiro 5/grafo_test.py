@@ -14,7 +14,6 @@ class TestGrafo(unittest.TestCase):
         self.g_p.adicionaAresta('a5', 'P', 'C')
         self.g_p.adicionaAresta('a6', 'T', 'C')
         self.g_p.adicionaAresta('a7', 'M', 'C')
-        
         self.g_p.adicionaAresta('a8', 'M', 'T')
         self.g_p.adicionaAresta('a9', 'T', 'Z')
 
@@ -69,6 +68,37 @@ class TestGrafo(unittest.TestCase):
         # Grafos desconexos
         self.g_d = MeuGrafo(['A', 'B', 'C', 'D'])
         self.g_d.adicionaAresta('asd', 'A', 'B')
+
+        self.g_euler1 = MeuGrafo(['J', 'C', 'E', 'P', 'M', 'T', 'Z'])
+        self.g_euler1.adicionaAresta("a1", "J", "C")
+        self.g_euler1.adicionaAresta("a2", "C", "E")
+        self.g_euler1.adicionaAresta("a3", "C", "E")
+        self.g_euler1.adicionaAresta("a4", "C", "P")
+        self.g_euler1.adicionaAresta("a5", "C", "P")
+        self.g_euler1.adicionaAresta("a6", "C", "M")
+        self.g_euler1.adicionaAresta("a7", "C", "T")
+        self.g_euler1.adicionaAresta("a8", "M", "T")
+
+        self.g_euler2  = MeuGrafo(['0','1','2','3'])
+        self.g_euler2.adicionaAresta('a1','0','1')
+        self.g_euler2.adicionaAresta('a2','0','2')
+        self.g_euler2.adicionaAresta('a3','1','2')
+        self.g_euler2.adicionaAresta('a4','2','3')
+
+        self.g_euler3 = MeuGrafo(['0','1','2'])
+        self.g_euler3.adicionaAresta('a1','0','1')
+        self.g_euler3.adicionaAresta('a2','1','2')
+        self.g_euler3.adicionaAresta('a3','2','0')
+
+        self.g_euler4 = MeuGrafo(['0', '1', '2', '3', '4'])
+        self.g_euler4.adicionaAresta("a1", "1", "0")
+        self.g_euler4.adicionaAresta("a2", "0", "2")
+        self.g_euler4.adicionaAresta("a3", "2", "1")
+        self.g_euler4.adicionaAresta("a4", "0", "3")
+        self.g_euler4.adicionaAresta("a5", "3", "4")
+        self.g_euler4.adicionaAresta("a6", "3", "2")
+        self.g_euler4.adicionaAresta("a7", "3", "1")
+
 
     def test_adiciona_aresta(self):
         self.assertTrue(self.g_p.adicionaAresta('a10', 'J', 'C'))
@@ -156,3 +186,11 @@ class TestGrafo(unittest.TestCase):
         self.assertFalse((self.g_l3.eh_completo()))
         self.assertFalse((self.g_l4.eh_completo()))
         self.assertFalse((self.g_l5.eh_completo()))
+    
+    def test_euleriano(self):
+        self.assertEqual(set(self.g_p.exibirCaminho(), set('O grafo não é euleriano')))
+        self.assertEqual(set(self.g_euler1.exibirCaminho(), set(['J', 'a1', 'C', 'a2', 'E', 'a3', 'C', 'a4', 'P', 'a5', 'C', 'a6', 'M', 'a8', 'T', 'a7', 'C'])))
+        self.assertEqual(set(self.g_euler2.exibirCaminho(), set(['2', 'a2', '0', 'a1', '1', 'a3', '2', 'a4', '3'])))
+        self.assertEqual(set(self.g_euler3.exibirCaminho(), set(['0', 'a1', '1', 'a2', '2', 'a3', '0'])))
+        self.assertEqual(set(self.g_euler4.exibirCaminho(), set(['0', 'a1', '1', 'a3', '2', 'a2', '0', 'a4', '3', 'a5', '4', 'a8', '2', 'a6', '3', 'a7', '1'])))
+        

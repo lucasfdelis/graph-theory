@@ -311,77 +311,89 @@ class MeuGrafo(GrafoListaAdjacencia):
         return lista    
 
     def ehEuleriano(self):
+        '''
+        Verifica se o grafo é euleriano
+        :return 0: Se o grafo não tiver nenhuma aresta com grau ímpar
+        :return 1: Se o grafo não for euleriano (ter apenas 1 aresta ímpar ou mais de 2)
+        :return 2: Se o grafo tiver 2 arestas com grau ímpar
+        '''
         if(self.conexo() == False):
-            return 0
+            return 1
         else:
             grau = 0
             for i in self.N:
                 if(self.grau(i) %2 != 0):
                     grau = grau+1
         if grau == 0:
-            return 2
+            return 0
         elif grau == 2:
+            return 2
+        else:
             return 1
-        elif grau > 2:
-            return 0
 
-    def arestaValidaEuler(self,a):
-        lista_arestas = []
+    def __arestaValidaEuler(euler,a):
+        '''
+        Verifica se uma aresta a pode ser passada como 
+        próximo caminho do caminho euleriano
+        :return: Um valor booleano que indica se a aresta pode ser o caminho
+        '''
+        u = euler.A[a].getV1()
+        v = euler.A[a].getV2()
 
-        for i in self.A:
-            lista_arestas.append(i)
-
-        if(a not in lista_arestas):
-            return 0
-
-        u = self.A[a].getV1()
-        v = self.A[a].getV2()
-
-        if(self.vertices_adjacentes(u) == [v]):
+        if(euler.vertices_adjacentes(u) == [v]):
             return True
         else:
-            contador1 = self.dfs(u)
-            self.removeAresta(a)
-            contador2 = self.dfs(u)
-            self.adicionaAresta(a,u,v)
+            contador1 = euler.dfs(u)
+            euler.removeAresta(a)
+            contador2 = euler.dfs(u)
+            euler.adicionaAresta(a,u,v)
             return False if len(contador1.N) > len(contador2.N) else True
                        
-    def exibirEuler(self,u):
-        for i in range(len(self.lista_vertices)):
-            if (u in self.lista_vertices[i]):
-                self.aresta1 = self.lista_vertices[i]
-                self.lista_vertices.pop(i)
-                for v in self.aresta1:
-                    if(u != v):
-                        if(self.arestaValidaEuler(self.aresta1[2]))==0:
-                            return 0
-                        if self.arestaValidaEuler(self.aresta1[2]):
-                            if(len(self.visitados)>1):
-                                #if(self.visitados[-1] == u):
-                           # self.visitados.append(u)
-                                    self.visitados.append(self.aresta1[2])
-                                    self.visitados.append(v)
-                            if(len(self.visitados)==0):
-                                self.visitados.append(u)
-                                self.visitados.append(self.aresta1[2])
-                                self.visitados.append(v)
-                            self.removeAresta(self.aresta1[2])
-                            self.exibirEuler(v)
+    def __exibirEuler(euler,u):
+        '''
+        Adiciona o caminho euleriano em uma lista, começando do vértice u,
+        passado como parametro em exibirCaminho()
+        '''
+        grafo = []
+        for i in euler.A:
+            if (u in euler.A[i].getV1() or u in euler.A[i].getV2()):
+                grafo = [euler.A[i].getV1(),euler.A[i].getV2()]
+                break
+        if(grafo == []):
+            return 0
+        for v in grafo:
+            if u!=v:
+                if(euler.__arestaValidaEuler(i)):
+                    if(len(euler.visitados)>0):
+                        euler.visitados.append(i)
+                        euler.visitados.append(v)
+                    if(len(euler.visitados)==0):
+                        euler.visitados.append(u)
+                        euler.visitados.append(i)
+                        euler.visitados.append(v)
+                    euler.removeAresta(i)
+                    euler.__exibirEuler(v)
                         
     
     def exibirCaminho(self):
-        if(self.ehEuleriano() == 0):
+        '''
+        A função principal que exibe o caminho euleriano. Ela primeiro verifica
+        se o grafo é euleriano. Se ele for, a função chama _exibirEuler() para
+        printar o caminho.
+        :return: Uma lista com o caminho euleriano
+        '''
+        
+        euler = deepcopy(self)
+
+        euler.visitados = []
+        if(euler.ehEuleriano() == 1):
             return "O grafo não é euleriano"
-        self.visitados = []
-        u = 0
-
-        self.lista_vertices = []
-        for i in self.A:
-            self.lista_vertices.append([self.A[i].getV1(), self.A[i].getV2(), i])
-
-        for i in self.N:
-            if(self.grau(i) %2 != 0):
-                u = i
-                break
-        self.exibirEuler(u)
-        return self.visitados            
+        if(euler.ehEuleriano() == 0):
+            u = euler.N[0]
+        else:
+            for i in euler.N:
+                if(euler.grau(i) %2 != 0):
+                    u = i
+                    break
+        euler.__exibirEuler(u)
+        return euler.visitados            
