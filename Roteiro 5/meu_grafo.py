@@ -387,7 +387,7 @@ class MeuGrafo(GrafoListaAdjacencia):
 
         euler.visitados = []
         if(euler.ehEuleriano() == 1):
-            return "O grafo não é euleriano"
+            return 'O grafo não é euleriano.'
         if(euler.ehEuleriano() == 0):
             u = euler.N[0]
         else:
