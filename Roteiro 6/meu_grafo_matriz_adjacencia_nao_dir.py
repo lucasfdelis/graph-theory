@@ -96,14 +96,26 @@ class MeuGrafo(GrafoMatrizAdjacenciaNaoDirecionado):
                     return False
         return True
 
+    def __warshallmatrix(self):
+        E = []
+        tam = len(self.N)
+        for i in range(tam):
+            M = []
+            for j in range(tam):
+                M.append(0)
+            E.append(M)
+        for i in range(tam):
+            for j in range(tam):
+                if len(self.M[i][j]) > 0 and self.M[i][j] != '-':
+                    E[i][j] = 1
+        return E
     def warshall(self):
-        E  = deepcopy(self)
+        matriz = self.__warshallmatrix()
         tam=len(self.N)
 
         for i in range(tam):
             for j in range(tam):
-                if E.M[j][i] == 1:
+                if(matriz[j][i] == 1):
                     for k in range(tam):
-                        E.M[j][k]=max(E.M[j][k],E.M[i][k])
-
-        return E
+                        matriz[j][k] = max(matriz[j][k],matriz[i][k])
+        return matriz
