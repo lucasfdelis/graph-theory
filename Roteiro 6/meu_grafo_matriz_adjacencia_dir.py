@@ -17,8 +17,12 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
                 if len(self.M[i][j]) > 0 and self.M[i][j] != '-':
                     E[i][j] = 1
         return E
-        
+
     def warshall(self):
+        """
+        Encontra a matriz de alcançabilidade de um grafo usando o algoritmo de Warshall.
+        :return: Uma matriz com a alcançabilidade de um grafo (Os alcançáveis são marcados com "1".)
+        """
         matriz = self.__warshallmatrix()
         tam=len(self.N)
 
