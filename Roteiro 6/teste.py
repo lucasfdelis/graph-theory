@@ -1,5 +1,5 @@
 import unittest
-from bibgrafo.grafo_lista_adjacencia import GrafoListaAdjacencia
+from bibgrafo.grafo_matriz_adj_dir import GrafoMatrizAdjacenciaDirecionado
 
 from meu_grafo_matriz_adjacencia_dir import MeuGrafo
 
