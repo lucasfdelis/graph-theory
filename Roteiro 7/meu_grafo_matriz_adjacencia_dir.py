@@ -1,6 +1,7 @@
 from bibgrafo.grafo_matriz_adj_dir import GrafoMatrizAdjacenciaDirecionado
 from bibgrafo.grafo_exceptions import *
 from copy import deepcopy
+import math
 
 class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
 
@@ -19,8 +20,6 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
         return lista
 
     def djikstra(self,u,v):
-        import math
-
         vertices=self.N
         lista_aresta=[]
         lista_menor_caminho=[]
@@ -39,8 +38,7 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
         R = 0 
         w=u
         while w!=v:
-            lista_aresta = self.vertices_partindo_de(w)
-            print(w,lista_aresta)
+            lista_aresta = self.vertices(w)
             for r in lista_aresta:
                 if r in nao_visitados:
                     if beta[r]>(beta[w]+1):
@@ -69,7 +67,6 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
         return lista_menor_caminho
 
     def djikstra_modificada(self,u,v,c_inicial,c_max,pontos_recarga=[]):
-        import math
 
         vertices=self.N
         lista_aresta=[]
