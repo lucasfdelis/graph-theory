@@ -1,6 +1,5 @@
 from bibgrafo.grafo_matriz_adj_dir import GrafoMatrizAdjacenciaDirecionado
 from bibgrafo.grafo_exceptions import *
-from copy import deepcopy
 import math
 
 class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
@@ -12,7 +11,7 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
             for j in range(len(self.M[i])):
                 if len(self.M[i][j]) > 0 and self.M[i][j]!=self.SEPARADOR_ARESTA:
                     n=1
-                    if ( (n >= 1) and (self.N[i] == v) ):
+                    if ((n >= 1) and (self.N[i] == v)):
                         for c in range(n):
                             if self.N[i]==v:
                                 if self.N[j] not in lista:

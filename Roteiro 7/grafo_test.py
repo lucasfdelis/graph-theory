@@ -59,6 +59,10 @@ class TestGrafo(unittest.TestCase):
     
     def test_dijkstra(self):
         self.assertEqual(self.g_djikstra.djikstra(1,30),[1, 4, 12, 16, 18, 21, 26, 31, 30])
-
+        self.assertEqual(self.g_djikstra.djikstra(1,17),[1, 2, 5, 9, 13, 17])
+        self.assertEqual(self.g_djikstra.djikstra(1,19),[1, 3, 6, 11, 15, 19])
+        self.assertEqual(self.g_djikstra.djikstra(15,24),[15, 19, 20, 24])
     def test_dijkstra_modificada(self):
         self.assertEqual(self.g_djikstra.djikstra_modificada(1,30,3,3,[9,18,24,32]),[1, 2, 5, 9, 13, 17, 18, 19, 20, 24, 29, 32, 31, 30])
+        self.assertEqual(self.g_djikstra.djikstra_modificada(1,30,4,4,[9,18,24,32]),False)
+        self.assertEqual(self.g_djikstra.djikstra_modificada(1,30,5,5,[9,18,24,32]),[1, 4, 12, 16, 18, 21, 26, 31, 30])
