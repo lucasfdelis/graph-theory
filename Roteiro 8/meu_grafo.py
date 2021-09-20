@@ -3,8 +3,11 @@ from bibgrafo.grafo_exceptions import *
 from itertools import combinations, permutations
 from copy import deepcopy
 import sys, io
+from math import inf
 
 class MeuGrafo(GrafoListaAdjacencia):
+
+    #roteiro 5
 
     def vertices_nao_adjacentes(self):
         '''
@@ -396,7 +399,9 @@ class MeuGrafo(GrafoListaAdjacencia):
                     u = i
                     break
         euler.__exibirEuler(u)
-        return euler.visitados   
+        return euler.visitados
+
+    #roteiro 8. Utilizei algumas funções do roteiro 5 nessa atividade.   
 
     sets = {}
 
@@ -417,20 +422,21 @@ class MeuGrafo(GrafoListaAdjacencia):
         del self.sets[vertice2]
 
 
-    def Kruskall_modificado(self):
+    def KruskallModificado(self):
     
         arvore_minima = MeuGrafo()
-        teste = 1
+        nome_aresta = 1
+        
         for i in self.N:
             self.criar_floresta(i)
 
-        arvore = []
+        self.lista_final_kruskall = []
 
         dicionarioArestasComPesos = self.dicionario_peso_aresta()
         arestas_menor_peso = self.dicionario_peso_aresta()
+        arestas_menor_peso = dict(sorted(arestas_menor_peso.items(), key=lambda x: x[1], reverse=False))
         arestas_menor_peso = arestas_menor_peso.values()
-        # print(dicionarioArestasComPesos)
-        # print(arestas_menor_peso)
+
         if self.conexo():
             for a in arestas_menor_peso:
                 for i in dicionarioArestasComPesos:
@@ -438,9 +444,7 @@ class MeuGrafo(GrafoListaAdjacencia):
                         if self.procura(i[0]) != self.procura(i[2]):
                             v1=i[0]
                             v2=i[2]
-                            arvore.append(i)
-                            arvore.append(v1)
-                            arvore.append(v2)
+                            self.lista_final_kruskall.append(i)
                             existe_vertice1 = arvore_minima.existeVertice(v1)
                             existe_vertice2 = arvore_minima.existeVertice(v2)
                             if not existe_vertice1:
@@ -448,13 +452,11 @@ class MeuGrafo(GrafoListaAdjacencia):
                             if not existe_vertice2:
                                 arvore_minima.adicionaVertice(v2)
                             if not (existe_vertice1 and existe_vertice2) or (existe_vertice1 and existe_vertice2):
-                                # print(i,a)
                                 v1,v2 = i.split(self.SEPARADOR_ARESTA)
-                                arvore_minima.adicionaAresta(str(teste),v1,v2,a)
-                                teste = teste+1
+                                arvore_minima.adicionaAresta(str(nome_aresta),v1,v2,a)
+                                nome_aresta = nome_aresta+1
                             self.uniao(v1,v2)
             return arvore_minima
-
 
     def procurar_na_arvore(self,vertice,lista=[]):
         if vertice not in lista:
@@ -465,50 +467,51 @@ class MeuGrafo(GrafoListaAdjacencia):
     def dicionario_peso_aresta(self):
         dic = {}
         for a in self.A:
-                    aresta = '{}{}{}'.format(self.A[a].getV1(), self.SEPARADOR_ARESTA, self.A[a].getV2())
-                    dic[aresta] = self.A[a].getPeso()
-
+            aresta = '{}{}{}'.format(self.A[a].getV1(), self.SEPARADOR_ARESTA, self.A[a].getV2())
+            dic[aresta] = self.A[a].getPeso()
         return dic
 
     def criar_aresta(self,v1,v2):
         aresta = "{}{}{}".format(v1,self.SEPARADOR_ARESTA,v2)
         return aresta
 
-
     def PrimModificado(self):
-        from math import inf
         vertices = deepcopy(self.N)
         arestas = []
-        teste = 1
+        nome_aresta = 1
+
         for a in self.A:
             aresta1 = '{}{}{}'.format(self.A[a].getV1(), self.SEPARADOR_ARESTA, self.A[a].getV2())
             arestas.append(aresta1)
+
         dic_peso = self.dicionario_peso_aresta()
         Jet = {}
         P = {}
+        self.lista_final_prim = []
         guarda_peso = inf
         arvore = MeuGrafo()
+
         for vertice in vertices:
             Jet[vertice] = inf
             P[vertice] = None
 
         for aresta in arestas:
-            listap= dic_peso[aresta]
-            # print(listap)
+            listap = dic_peso[aresta]
             peso = listap
-            if peso< guarda_peso:
+            if peso < guarda_peso:
                 guarda_peso = peso
-                guarda_aresta = aresta
                 v1,v2 = aresta.split(self.SEPARADOR_ARESTA)
+
         Jet[v1] = 0
         lista_prioridade = deepcopy(self.N)
+
         while(len(lista_prioridade)!=0):
             menor_peso = inf
             vertice_menor_peso = ''
             for v in lista_prioridade:
                 if isinstance(Jet[v],list)==True:
                     jet = Jet[v][0]
-                    if jet<menor_peso:
+                    if jet < menor_peso:
                         pesolista = Jet[v]
                         menor_peso = pesolista[0]
                         vertice_menor_peso= v
@@ -520,12 +523,14 @@ class MeuGrafo(GrafoListaAdjacencia):
 
             lista_prioridade.pop(lista_prioridade.index(vertice_menor_peso))
             lista_vertices_adjacente = self.vertices_adjacentes(x)
+
             for vertice_adjacente in lista_vertices_adjacente:
                 aresta_y = x+"-"+vertice_adjacente
                 if aresta_y not in arestas:
                     aresta_y = vertice_adjacente+'-'+x
                 pesoy = dic_peso[aresta_y]
                 jety = Jet[vertice_adjacente]
+
                 if isinstance(jety,list)==True:
                     if vertice_adjacente in lista_prioridade and pesoy<jety[0]:
                         P[vertice_adjacente] = x
@@ -534,24 +539,43 @@ class MeuGrafo(GrafoListaAdjacencia):
                     if vertice_adjacente in lista_prioridade and pesoy<jety:
                         P[vertice_adjacente] = x
                         Jet[vertice_adjacente]= dic_peso[aresta_y]
+
         for v in vertices:
             arvore.adicionaVertice(v)
-        lista_final = []
+
+        self.lista_final = []
         for a,i in P.items():
             if i:
-                lista_final.append(self.criar_aresta(i,a))
+                self.lista_final.append(self.criar_aresta(i,a))
                 
         dic_menor_peso = self.dicionario_peso_aresta()
-        for i in lista_final:
+        for i in self.lista_final:
             v2,v1 = i.split(self.SEPARADOR_ARESTA)
             inverso = self.criar_aresta(v1,v2)
-            # print(inverso,i)
             if i in dic_menor_peso:
+                self.lista_final_prim.append(i)
                 v1,v2 = i.split(self.SEPARADOR_ARESTA)
-                arvore.adicionaAresta(str(teste),v1,v2,dic_menor_peso[i])
-                teste = teste+1
+                arvore.adicionaAresta(str(nome_aresta),v1,v2,dic_menor_peso[i])
+                nome_aresta = nome_aresta+1
             if inverso in dic_menor_peso:
+                self.lista_final_prim.append(inverso)
                 v1,v2 = inverso.split(self.SEPARADOR_ARESTA)
-                arvore.adicionaAresta(str(teste),v1,v2,dic_menor_peso[inverso])
-                teste = teste+1
+                arvore.adicionaAresta(str(nome_aresta),v1,v2,dic_menor_peso[inverso])
+                nome_aresta = nome_aresta+1
         return arvore
+
+    def lista_arestas_prim(self):
+        """
+        Fornece uma representação do tipo lista para o grafo de Prim modificado
+        :return: As arestas do grafo
+        """
+        self.PrimModificado()
+        return self.lista_final_prim
+    
+    def lista_arestas_kruskall(self):
+        """
+        Fornece uma representação do tipo lista para o grafo de Kruskall modificado
+        :return: As arestas do grafo
+        """
+        self.KruskallModificado()
+        return self.lista_final_kruskall

@@ -17,4 +17,7 @@ paraiba.adicionaAresta("a11", '8','6',6)
 paraiba.adicionaAresta("a12", '8','2',2)
 paraiba.adicionaAresta("a13", '2','5',4)
 paraiba.adicionaAresta("a14", '5','3',14)
-print(paraiba.Kruskall_modificado())
+print(paraiba.KruskallModificado())
+print(paraiba.PrimModificado())
+
+unittest.main()
