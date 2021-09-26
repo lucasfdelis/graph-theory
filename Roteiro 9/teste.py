@@ -74,14 +74,14 @@ eng_comp.adicionaAresta("a48","Projeto em Engenharia de Computação I","Projeto
 print(eng_comp.topologicalSort())
 
 const_edificios = MeuGrafo(['Informática Básica','Inglês Instrumental','Português Instrumental','Química Aplicada',
-'Cálculo Diferencial e Integral I','Álgebra Vetorial e Geometria Analítica', 'Desenho Técnico','Introdução a Construção Edifícios',
+'Cálculo Diferencial e Integral I','Álgebra Vetorial e Geometria Analítica','Desenho Técnico','Introdução a Construção Edifícios',
 'Física I','Metodologia da Pesquisa Científica','Materiais de Construção I','Des. Assist. por Computador I','Cálculo Diferencial e Integral II',
-'Topografia I','Desenho e Projeto Arquitetônico', 'Matemática Financeira Aplicada','Resistência dos Materiais','Física II','Estatística Aplicada',
+'Topografia I','Desenho e Projeto Arquitetônico','Matemática Financeira Aplicada','Resistência dos Materiais','Física II','Estatística Aplicada',
 'Técnicas Construtivas I','Topografia II','Materiais de Construção II','Des. Assist. por Computador II','Instalações Hidrossanitárias',
-'Instalações Elétricas Pred.','Especificações e Orcamentos I','Segurança do Trabalho','Técnicas Construtivas II',' Estruturas de Concreto I',
+'Instalações Elétricas Pred.','Especificações e Orcamentos I','Segurança do Trabalho','Técnicas Construtivas II','Estruturas de Concreto I',
 'Mecânica dos Solos','Patologia das Construções','Manutenção Predial','Estruturas Metálicas','Fundações e Sistemas de Contenção',
 'Estruturas de Madeira','Estruturas de Concreto II','Especificações e Orcamentos II','Instalações Especiais',
-'Formação do Empreendedor','Planej.Gestão e Controle de Obra','Legislação Aplicada','Avaliação Pós-ocupação','Gestão da Qualidade e Produtividade',
+'Formação do Empreendedor','Planej. Gestão e Controle de Obra','Legislação Aplicada','Avaliação Pós-ocupação','Gestão da Qualidade e Produtividade',
 'Gestão Ambiental','Administração de Custos','Relações Humanas no Trabalho','Trabalho de Conclusão de Curso','Estágio Supervisionado','Libras (optativa)'])
 
 const_edificios.adicionaAresta("a1","Cálculo Diferencial e Integral I","Física I")
@@ -107,5 +107,35 @@ const_edificios.adicionaAresta("a20","Desenho Técnico","Instalações Elétrica
 const_edificios.adicionaAresta("a21","Física I","Instalações Elétricas Pred.")
 const_edificios.adicionaAresta("a22","Materiais de Construção I","Especificações e Orcamentos I")
 const_edificios.adicionaAresta("a23","Des. Assist. por Computador I","Segurança do Trabalho") #44
+const_edificios.adicionaAresta("a23","Topografia II","Técnicas Construtivas II")
+const_edificios.adicionaAresta("a24","Materiais de Construção II","Técnicas Construtivas II")
+const_edificios.adicionaAresta("a25","Desenho Técnico","Estruturas de Concreto I")
+const_edificios.adicionaAresta("a26","Resistência dos Materiais","Estruturas de Concreto I")
+const_edificios.adicionaAresta("a27","Informática Básica","Mecânica dos Solos")
+const_edificios.adicionaAresta("a28","Materiais de Construção II","Mecânica dos Solos")
+const_edificios.adicionaAresta("a29","Materiais de Construção II","Patologia das Construções")
+const_edificios.adicionaAresta("a30","Especificações e Orcamentos I","Patologia das Construções")
+const_edificios.adicionaAresta("a31","Técnicas Construtivas II","Patologia das Construções")
+const_edificios.adicionaAresta("a32","Estruturas de Concreto I","Patologia das Construções")
+const_edificios.adicionaAresta("a33","Instalações Hidrossanitárias","Manutenção Predial")
+const_edificios.adicionaAresta("a34","Instalações Elétricas Pred.","Manutenção Predial")
+const_edificios.adicionaAresta("a35","Técnicas Construtivas II","Manutenção Predial")
+const_edificios.adicionaAresta("a36","Estruturas de Concreto I","Manutenção Predial")
+const_edificios.adicionaAresta("a37","Desenho Técnico","Estruturas Metálicas")
+const_edificios.adicionaAresta("a38","Resistência dos Materiais","Estruturas Metálicas")
+const_edificios.adicionaAresta("a39","Mecânica dos Solos","Fundações e Sistemas de Contenção")
+const_edificios.adicionaAresta("a40","Desenho Técnico","Estruturas de Madeira")
+const_edificios.adicionaAresta("a41","Resistência dos Materiais","Estruturas de Madeira")
+const_edificios.adicionaAresta("a42","Estruturas de Concreto I","Estruturas de Concreto II")
+const_edificios.adicionaAresta("a43","Especificações e Orcamentos I","Especificações e Orcamentos II")
+const_edificios.adicionaAresta("a44","Matemática Financeira Aplicada","Planej. Gestão e Controle de Obra")
+const_edificios.adicionaAresta("a45","Segurança do Trabalho","Planej. Gestão e Controle de Obra")
+const_edificios.adicionaAresta("a46","Metodologia da Pesquisa Científica","Avaliação Pós-ocupação")
+const_edificios.adicionaAresta("a47","Desenho e Projeto Arquitetônico","Avaliação Pós-ocupação")
+const_edificios.adicionaAresta("a48","Física II","Avaliação Pós-ocupação")
+const_edificios.adicionaAresta("a49","Topografia II","Avaliação Pós-ocupação")
+const_edificios.adicionaAresta("a50","Mecânica dos Solos","Gestão da Qualidade e Produtividade")
+const_edificios.adicionaAresta("a51","Metodologia da Pesquisa Científica","Gestão Ambiental")
+const_edificios.adicionaAresta("a52","Matemática Financeira Aplicada","Administração de Custos")
 print(const_edificios.topologicalSort())
 unittest.main()
