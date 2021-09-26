@@ -72,6 +72,7 @@ eng_comp.adicionaAresta("a46","Métodos Numéricos","Controle e Automação I")
 eng_comp.adicionaAresta("a47","Circuitos Eletro-Eletrônicos","Controle e Automação I")
 eng_comp.adicionaAresta("a48","Projeto em Engenharia de Computação I","Projeto em Engenharia de Computação II")
 print(eng_comp.topologicalSort())
+print("")
 
 const_edificios = MeuGrafo(['Informática Básica','Inglês Instrumental','Português Instrumental','Química Aplicada',
 'Cálculo Diferencial e Integral I','Álgebra Vetorial e Geometria Analítica','Desenho Técnico','Introdução a Construção Edifícios',
@@ -138,6 +139,7 @@ const_edificios.adicionaAresta("a50","Mecânica dos Solos","Gestão da Qualidade
 const_edificios.adicionaAresta("a51","Metodologia da Pesquisa Científica","Gestão Ambiental")
 const_edificios.adicionaAresta("a52","Matemática Financeira Aplicada","Administração de Custos")
 print(const_edificios.topologicalSort())
+print("")
 
 fisica = MeuGrafo(['Introdução à Física','Pré-Cálculo','Psicologia da Aprendizagem','Álgebra Vetorial e Geometria Analítica','Língua Portuguesa I',
 'Metodologia do Trabalho Científico','História da Educação','Física Básica I','Física Experimental I','Cálculo Diferencial e Integral I',
@@ -203,6 +205,7 @@ fisica.adicionaAresta("a51","Língua Portuguesa II","TCC")
 fisica.adicionaAresta("a52","Física Básica IV","Estágio Supervisionado IV")
 fisica.adicionaAresta("a53","Estágio Supervisionado III","Estágio Supervisionado IV")
 print(fisica.topologicalSort())
+print("")
 
 matematica = MeuGrafo(['Matemática para o Ensino Médio 1','Matemática para o Ensino Fundamental','Trigonometria','História da Educação',
 'Psicologia da Aprendizagem','Língua Portuguesa 1','Inglês Instrumental','Matemática para o Ensino Médio 2','Cálculo 1','Álgebra Vetorial e Geometria Analítica',
@@ -256,8 +259,9 @@ matematica.adicionaAresta("a37","Cálculo 2","História da Matemática")
 matematica.adicionaAresta("a38","Prática de Ensino de Matemática 3","Prática de Ensino de Matemática 4")
 matematica.adicionaAresta("a39","Estágio Supervisionado 3","Estágio Supervisionado 4")
 print(matematica.topologicalSort())
+print("")
 
-letras = MeuGrafo(['Estágio Supervisionado 4','Introdução à Linguistica','Leitura e Produção de Texto I','Informática Básica','Fundamentos da Educação a Distância',
+letras = MeuGrafo(['Introdução aos Estudos Literários','Introdução à Linguistica','Leitura e Produção de Texto I','Informática Básica','Fundamentos da Educação a Distância',
 'Inglês Instrumental','História da Educação Brasileira','Teoria Literária I','Literatura e Ensino','Morfologia da Língua Portuguesa','Fundamentos da Linguística Românica',
 'Linguística I','Filosofia da Educação','Metodologia da Pesquisa Científica','Teoria Literária II','Literatura Brasileira I','Literatura Portuguesa I',
 'História da Língua Portuguesa','Linguística II','Psicologia da Aprendizagem','Seminário de Pesquisa Interdisciplinar I','Literatura Brasileira II',
@@ -268,16 +272,16 @@ letras = MeuGrafo(['Estágio Supervisionado 4','Introdução à Linguistica','Le
 'Estágio Supervisionado I','Literatura Brasileira V','Literatura Infantil e juvenil','Literatura e Cultura Popular','Orientação de Estágio Supervisionado III',
 'Pragmática','Estrutura e Funcionamento da Educ. Básica','Orientação de TCC I','Estágio Supervisionado II','Língua Portuguesa como segunda língua para surdos (Optativa)',
 'Gestão Educacional','Tópicos em Projetos Especiais','Sociologia da Educação','Orientação de Estágio Supervisionado IV','Educação e Direitos Humanos',
-'Educação Ambiental e Interdisciplinaridade','Orientação de TCC I','Estágio Supervisionado III'])
+'Educação Ambiental e Interdisciplinaridade','Orientação de TCC II','Estágio Supervisionado III'])
 
 letras.adicionaAresta("a1","Introdução aos Estudos Literários","Teoria Literária I")
 letras.adicionaAresta("a2","Introdução aos Estudos Literários","Literatura e Ensino")
 letras.adicionaAresta("a3","Introdução à Linguistica","Morfologia da Língua Portuguesa")
 letras.adicionaAresta("a4","Introdução à Linguistica","Linguística I")
 letras.adicionaAresta("a5","História da Educação Brasileira","Filosofia da Educação")
-letras.adicionaAresta("a6","Teoria Literária I ","Teoria Literária II ")
-letras.adicionaAresta("a7","Teoria Literária I ","Literatura Brasileira I")
-letras.adicionaAresta("a8","Teoria Literária I ","Literatura Portuguesa I")
+letras.adicionaAresta("a6","Teoria Literária I","Teoria Literária II")
+letras.adicionaAresta("a7","Teoria Literária I","Literatura Brasileira I")
+letras.adicionaAresta("a8","Teoria Literária I","Literatura Portuguesa I")
 letras.adicionaAresta("a9","Fundamentos da Linguística Românica","História da Língua Portuguesa")
 letras.adicionaAresta("a10","Linguística I","Linguística II")
 letras.adicionaAresta("a11","Teoria Literária II","Literatura Brasileira II")
@@ -297,7 +301,7 @@ letras.adicionaAresta("a24","Literatura e Ensino","Metodologia do Ensino de Lite
 letras.adicionaAresta("a25","Seminário de Pesquisa Interdisciplinar I","Seminário de Pesquisa Interdisciplinar III")
 letras.adicionaAresta("a26","Teoria Literária II","Literatura Brasileira IV")
 letras.adicionaAresta("a27","Teoria Literária II","Literaturas Africanas de Língua Portuguesa")
-letras.adicionaAresta("a28","Linguística II ","Sociolinguística")
+letras.adicionaAresta("a28","Linguística II","Sociolinguística")
 letras.adicionaAresta("a29","Orientação de Estágio Supervisionado I","Orientação de Estágio Supervisionado II")
 letras.adicionaAresta("a30","Seminário de Pesquisa Interdisciplinar I","Seminário de Pesquisa Interdisciplinar IV")
 letras.adicionaAresta("a31","Orientação de Estágio Supervisionado I","Estágio Supervisionado I")
@@ -318,4 +322,57 @@ letras.adicionaAresta("a45","Orientação de TCC I","Orientação de TCC II")
 letras.adicionaAresta("a46","Orientação de Estágio Supervisionado III","Estágio Supervisionado III")
 letras.adicionaAresta("a47","Estágio Supervisionado II","Estágio Supervisionado III")
 print(letras.topologicalSort())
+print("")
+
+telematica = MeuGrafo(['Introdução à Telemática','Fundamentos de Eletricidade','Programação I','Lab. de Sist. Abertos',
+'Inglês Instrumental','Pré-cálculo','Língua Portuguesa','Redes de Computadores','Eletrônica para Telecomunicações',
+'Medição Eletroeletrônica','Programação II','Arquitetura de Computadores','Cálculo Diferencial e Integral',
+'Educação em Diversidade','Tecnologias de Redes Locais','Estatística Aplicada à Telemática','Sinais e Sistemas',
+'Administração de Sistemas','Sistemas Operacionais','Programação III','Metodologia da Pesquisa Científica',
+'Interconexão de Redes','Cabeamento Estruturado','Teoria da Informação e Codificação','Sistemas de Comunicações',
+'Processamento Digital de Sinais','Administração de Serviços','Educação Ambiental e Sustentabilidade','Redes de Longa Distância',
+'Segurança de Redes de Computadores','Comunicações Sem Fio','Comunicações Ópticas','Projeto em Telemática','Formação do Empreendedor',
+'Optativa I','Projeto de Redes de Computadores','Sistemas Telefônicos','Educação em Direitos Humanos','Relações Humanas no Trabalho',
+'Ética','Optativa II','Trabalho de Conclusão de Curso (Obrigatória)','Estágio Supervisionado (Optativa)'])
+
+telematica.adicionaAresta("a1","Introdução à Telemática","Redes de Computadores")
+telematica.adicionaAresta("a2","Fundamentos de Eletricidade","Eletrônica para Telecomunicações")
+telematica.adicionaAresta("a3","Pré-cálculo","Eletrônica para Telecomunicações")
+telematica.adicionaAresta("a4","Fundamentos de Eletricidade","Medição Eletroeletrônica")
+telematica.adicionaAresta("a5","Pré-cálculo","Medição Eletroeletrônica")
+telematica.adicionaAresta("a6","Programação I","Programação II")
+telematica.adicionaAresta("a7","Pré-cálculo","Cálculo Diferencial e Integral")
+telematica.adicionaAresta("a8","Redes de Computadores","Tecnologias de Redes Locais")
+telematica.adicionaAresta("a9","Cálculo Diferencial e Integral","Estatística Aplicada à Telemática")
+telematica.adicionaAresta("a10","Eletrônica para Telecomunicações","Sinais e Sistemas")
+telematica.adicionaAresta("a11","Medição Eletroeletrônica","Sinais e Sistemas")
+telematica.adicionaAresta("a12","Cálculo Diferencial e Integral","Sinais e Sistemas")
+telematica.adicionaAresta("a13","Lab. de Sist. Abertos","Administração de Sistemas")
+telematica.adicionaAresta("a14","Arquitetura de Computadores","Sistemas Operacionais")
+telematica.adicionaAresta("a15","Redes de Computadores","Programação III")
+telematica.adicionaAresta("a16","Programação II","Programação III")
+telematica.adicionaAresta("a17","Tecnologias de Redes Locais","Interconexão de Redes")
+telematica.adicionaAresta("a18","Tecnologias de Redes Locais","Cabeamento Estruturado")
+telematica.adicionaAresta("a19","Estatística Aplicada à Telemática","Teoria da Informação e Codificação")
+telematica.adicionaAresta("a20","Estatística Aplicada à Telemática","Sistemas de Comunicações")
+telematica.adicionaAresta("a21","Sinais e Sistemas","Sistemas de Comunicações")
+telematica.adicionaAresta("a22","Sinais e Sistemas","Processamento Digital de Sinais")
+telematica.adicionaAresta("a23","Redes de Computadores","Administração de Serviços")
+telematica.adicionaAresta("a24","Administração de Sistemas","Administração de Serviços")
+telematica.adicionaAresta("a25","Interconexão de Redes","Redes de Longa Distância")
+telematica.adicionaAresta("a26","Interconexão de Redes","Segurança de Redes de Computadores")
+telematica.adicionaAresta("a27","Sistemas de Comunicações","Comunicações Sem Fio")
+telematica.adicionaAresta("a28","Sistemas de Comunicações","Comunicações Ópticas")
+telematica.adicionaAresta("a29","Metodologia da Pesquisa Científica","Projeto em Telemática")
+telematica.adicionaAresta("a30","Interconexão de Redes","Projeto em Telemática")
+telematica.adicionaAresta("a31","Sistemas de Comunicações","Projeto em Telemática")
+telematica.adicionaAresta("a32","Cabeamento Estruturado","Projeto de Redes de Computadores")
+telematica.adicionaAresta("a33","Redes de Longa Distância","Projeto de Redes de Computadores")
+telematica.adicionaAresta("a34","Comunicações Sem Fio","Sistemas Telefônicos")
+telematica.adicionaAresta("a35","Projeto em Telemática","Trabalho de Conclusão de Curso (Obrigatória)")
+telematica.adicionaAresta("a36","Metodologia da Pesquisa Científica","Estágio Supervisionado (Optativa)")
+telematica.adicionaAresta("a37","Interconexão de Redes","Estágio Supervisionado (Optativa)")
+telematica.adicionaAresta("a38","Sistemas de Comunicações","Estágio Supervisionado (Optativa)")
+print(telematica.topologicalSort())
+
 unittest.main()
