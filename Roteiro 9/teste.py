@@ -258,5 +258,64 @@ matematica.adicionaAresta("a39","Estágio Supervisionado 3","Estágio Supervisio
 print(matematica.topologicalSort())
 
 letras = MeuGrafo(['Estágio Supervisionado 4','Introdução à Linguistica','Leitura e Produção de Texto I','Informática Básica','Fundamentos da Educação a Distância',
-'Inglês Instrumental','História da Educação Brasileira','Teoria Literária I',''])
+'Inglês Instrumental','História da Educação Brasileira','Teoria Literária I','Literatura e Ensino','Morfologia da Língua Portuguesa','Fundamentos da Linguística Românica',
+'Linguística I','Filosofia da Educação','Metodologia da Pesquisa Científica','Teoria Literária II','Literatura Brasileira I','Literatura Portuguesa I',
+'História da Língua Portuguesa','Linguística II','Psicologia da Aprendizagem','Seminário de Pesquisa Interdisciplinar I','Literatura Brasileira II',
+'Literatura Portuguesa II','Fonética e Fonologia da Língua Portuguesa','Aquisição da Linguagem','Didática','Morfossintaxe','Seminário de Pesquisa Interdisciplinar II',
+'Literatura Brasileira III','Semântica da Lingua Portuguesa','Leitura e Produção de Texto II','Orientação de Estágio Supervisionado I','Metodologia do Ensino de Língua Portuguesa',
+'Metodologia do Ensino de Literatura','Seminário de Pesquisa Interdisciplinar III','Literatura Brasileira IV','Literaturas Africanas de Língua Portuguesa',
+'Sociolinguística','Orientação de Estágio Supervisionado II','Língua Brasileira de Sinais (LIBRAS)','Educação Inclusiva','Seminário de Pesquisa Interdisciplinar IV',
+'Estágio Supervisionado I','Literatura Brasileira V','Literatura Infantil e juvenil','Literatura e Cultura Popular','Orientação de Estágio Supervisionado III',
+'Pragmática','Estrutura e Funcionamento da Educ. Básica','Orientação de TCC I','Estágio Supervisionado II','Língua Portuguesa como segunda língua para surdos (Optativa)',
+'Gestão Educacional','Tópicos em Projetos Especiais','Sociologia da Educação','Orientação de Estágio Supervisionado IV','Educação e Direitos Humanos',
+'Educação Ambiental e Interdisciplinaridade','Orientação de TCC I','Estágio Supervisionado III'])
+
+letras.adicionaAresta("a1","Introdução aos Estudos Literários","Teoria Literária I")
+letras.adicionaAresta("a2","Introdução aos Estudos Literários","Literatura e Ensino")
+letras.adicionaAresta("a3","Introdução à Linguistica","Morfologia da Língua Portuguesa")
+letras.adicionaAresta("a4","Introdução à Linguistica","Linguística I")
+letras.adicionaAresta("a5","História da Educação Brasileira","Filosofia da Educação")
+letras.adicionaAresta("a6","Teoria Literária I ","Teoria Literária II ")
+letras.adicionaAresta("a7","Teoria Literária I ","Literatura Brasileira I")
+letras.adicionaAresta("a8","Teoria Literária I ","Literatura Portuguesa I")
+letras.adicionaAresta("a9","Fundamentos da Linguística Românica","História da Língua Portuguesa")
+letras.adicionaAresta("a10","Linguística I","Linguística II")
+letras.adicionaAresta("a11","Teoria Literária II","Literatura Brasileira II")
+letras.adicionaAresta("a12","Literatura Portuguesa I","Literatura Portuguesa II")
+letras.adicionaAresta("a13","Linguística I","Fonética e Fonologia da Língua Portuguesa")
+letras.adicionaAresta("a14","Linguística I","Aquisição da Linguagem")
+letras.adicionaAresta("a15","Psicologia da Aprendizagem","Aquisição da Linguagem")
+letras.adicionaAresta("a16","Morfologia da Língua Portuguesa","Morfossintaxe")
+letras.adicionaAresta("a17","Linguística II","Morfossintaxe")
+letras.adicionaAresta("a18","Seminário de Pesquisa Interdisciplinar I","Seminário de Pesquisa Interdisciplinar II")
+letras.adicionaAresta("a19","Teoria Literária II","Literatura Brasileira III")
+letras.adicionaAresta("a20","Linguística II","Semântica da Lingua Portuguesa")
+letras.adicionaAresta("a21","Leitura e Produção de Texto I","Leitura e Produção de Texto II")
+letras.adicionaAresta("a22","Didática","Orientação de Estágio Supervisionado I")
+letras.adicionaAresta("a23","Linguística II","Metodologia do Ensino de Língua Portuguesa")
+letras.adicionaAresta("a24","Literatura e Ensino","Metodologia do Ensino de Literatura")
+letras.adicionaAresta("a25","Seminário de Pesquisa Interdisciplinar I","Seminário de Pesquisa Interdisciplinar III")
+letras.adicionaAresta("a26","Teoria Literária II","Literatura Brasileira IV")
+letras.adicionaAresta("a27","Teoria Literária II","Literaturas Africanas de Língua Portuguesa")
+letras.adicionaAresta("a28","Linguística II ","Sociolinguística")
+letras.adicionaAresta("a29","Orientação de Estágio Supervisionado I","Orientação de Estágio Supervisionado II")
+letras.adicionaAresta("a30","Seminário de Pesquisa Interdisciplinar I","Seminário de Pesquisa Interdisciplinar IV")
+letras.adicionaAresta("a31","Orientação de Estágio Supervisionado I","Estágio Supervisionado I")
+letras.adicionaAresta("a32","Teoria Literária II","Literatura Brasileira V")
+letras.adicionaAresta("a33","Teoria Literária II","Literatura Infantil e juvenil")
+letras.adicionaAresta("a34","Teoria Literária II","Literatura e Cultura Popular")
+letras.adicionaAresta("a35","Orientação de Estágio Supervisionado II","Orientação de Estágio Supervisionado III")
+letras.adicionaAresta("a36","Linguística II","Pragmática")
+letras.adicionaAresta("a37","Didática","Estrutura e Funcionamento da Educ. Básica")
+letras.adicionaAresta("a38","Metodologia da Pesquisa Científica","Orientação de TCC I")
+letras.adicionaAresta("a39","Leitura e Produção de Texto II","Orientação de TCC I")
+letras.adicionaAresta("a40","Orientação de Estágio Supervisionado II","Estágio Supervisionado II")
+letras.adicionaAresta("a41","Estágio Supervisionado I","Estágio Supervisionado II")
+letras.adicionaAresta("a42","Língua Brasileira de Sinais (LIBRAS)","Língua Portuguesa como segunda língua para surdos (Optativa)")
+letras.adicionaAresta("a43","História da Educação Brasileira","Sociologia da Educação")
+letras.adicionaAresta("a44","Orientação de Estágio Supervisionado III","Orientação de Estágio Supervisionado IV")
+letras.adicionaAresta("a45","Orientação de TCC I","Orientação de TCC II")
+letras.adicionaAresta("a46","Orientação de Estágio Supervisionado III","Estágio Supervisionado III")
+letras.adicionaAresta("a47","Estágio Supervisionado II","Estágio Supervisionado III")
+print(letras.topologicalSort())
 unittest.main()
