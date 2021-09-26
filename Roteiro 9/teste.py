@@ -1,66 +1,111 @@
 import unittest
-from bibgrafo.grafo_matriz_adj_dir import GrafoMatrizAdjacenciaDirecionado
 
 from meu_grafo_matriz_adjacencia_dir import MeuGrafo
 
-# paraiba = MeuGrafo(['11', '13', '14', '15', '16','17','21','22', '23', '24', '25', '26','27',
-# '31','32', '33', '34', '35', '36','41','42', '43', '44', '45','51','52', '53', '54', '55',
-# '61','62', '63', '64', '65','71','72', '73', '74', '75','81','82', '83', '84', '85',
-# '91','92', '93', '94', '101','102','103'])
+eng_comp = MeuGrafo(['Pré-Cálculo','Inglês Instrumental','Introdução à Engenharia de Computação', 
+'Algoritmos e Programação','Lab. de Algoritmos e Programação','Sistemas Digitais I',
+'Medição Eletro-eletrônica','Cálculo I','Estatística Aplicada à Computação', 
+'Leitura e Produção de Textos','Estruturas de Dados e Algoritmos',
+'Laboratório de Estruturas de Dados e Algoritmos','Sistemas Digitais II',
+'Educação Ambiental e Sustentabilidade','Cálculo II','Relações Humanas no Trabalho',
+'Teoria dos Grafos','Programação Orientada a Objetos','Laboratório de Programação Orientada a Objetos',
+'Organização e Arquitetura de Computadores','Física Clássica','Metodologia da Pesquisa Científica',
+'Teoria da Computação','Sistemas Operacionais',
+'Microprocessadores e Microcontroladores','Álgebra Linear Aplicada à Computação',
+'Eletricidade e Eletromagnetismo','Redes de Computadore','Bancos de Dados', 
+'Projeto de Sistemas Digitais','Métodos Numéricos','Inteligência Artificial',
+'Padrões de Projetos','Sinais e Sistemas','Verificação Funcional de Sistemas Digitais',
+'Libras','Análise e Técnicas de Algoritmos','Análise e Projeto de Sistemas',
+'Desenho Assistido por Computador','Circuitos Eletro-Eletrônicos',
+'Teste de Software','Gerência de Projetos','Técnicas de Prototipagem', 
+'Processamento Digital de Sinais','Sensores e Atuadores',
+'Empreendedorismo de Base Tecnológica','Projeto em Engenharia de Computação I',
+'Sistemas Embarcados','Controle e Automação I','Educação em Direitos Humanos',
+'Educação em Diversidade','Projeto em Engenharia de Computação II'])
 
-paraiba = MeuGrafo(['11', '14', '15', '16','21', '24', '25', '26',
-'31', '33', '34', '35', '36','41','42', '43', '44', '45','51','52', '53', '54', '55',
-'61','62', '63', '64', '65','71','72', '73', '74', '75','81','82', '83', '84', '85','92', '93', '94','103'])
+eng_comp.adicionaAresta("a1","Pré-Cálculo","Cálculo I")
+eng_comp.adicionaAresta("a2","Algoritmos e Programação","Estruturas de Dados e Algoritmos")
+eng_comp.adicionaAresta("a3","Lab. de Algoritmos e Programação","Estruturas de Dados e Algoritmos")
+eng_comp.adicionaAresta("a4","Algoritmos e Programação","Laboratório de Estruturas de Dados e Algoritmos")
+eng_comp.adicionaAresta("a5","Lab. de Algoritmos e Programação","Laboratório de Estruturas de Dados e Algoritmos")
+eng_comp.adicionaAresta("a6","Sistemas Digitais I","Sistemas Digitais II")
+eng_comp.adicionaAresta("a7","Cálculo I","Cálculo II")
+eng_comp.adicionaAresta("a8","Estruturas de Dados e Algoritmos","Teoria dos Grafos")
+eng_comp.adicionaAresta("a9","Algoritmos e Programação","Programação Orientada a Objetos")
+eng_comp.adicionaAresta("a10","Lab. de Algoritmos e Programação","Programação Orientada a Objetos")
+eng_comp.adicionaAresta("a11","Algoritmos e Programação","Laboratório de Programação Orientada a Objetos")
+eng_comp.adicionaAresta("a12","Lab. de Algoritmos e Programação","Laboratório de Programação Orientada a Objetos")
+eng_comp.adicionaAresta("a13","Sistemas Digitais II","Organização e Arquitetura de Computadores")
+eng_comp.adicionaAresta("a14","Cálculo I","Física Clássica")
+eng_comp.adicionaAresta("a15","Estruturas de Dados e Algoritmos","Teoria da Computação")
+eng_comp.adicionaAresta("a16","Estruturas de Dados e Algoritmos","Sistemas Operacionais")
+eng_comp.adicionaAresta("a17","Organização e Arquitetura de Computadores","Sistemas Operacionais")
+eng_comp.adicionaAresta("a18","Organização e Arquitetura de Computadores","Microprocessadores e Microcontroladores")
+eng_comp.adicionaAresta("a19","Cálculo II","Álgebra Linear Aplicada à Computação")
+eng_comp.adicionaAresta("a20","Cálculo II","Eletricidade e Eletromagnetismo")
+eng_comp.adicionaAresta("a21","Estruturas de Dados e Algoritmos","Redes de Computadore")
+eng_comp.adicionaAresta("a22","Estruturas de Dados e Algoritmos","Bancos de Dados")
+eng_comp.adicionaAresta("a23","Organização e Arquitetura de Computadores","Projeto de Sistemas Digitais")
+eng_comp.adicionaAresta("a24","Sistemas Operacionais","Projeto de Sistemas Digitais")
+eng_comp.adicionaAresta("a25","Álgebra Linear Aplicada à Computação","Métodos Numéricos")
+eng_comp.adicionaAresta("a26","Teoria da Computação","Inteligência Artificial")
+eng_comp.adicionaAresta("a27","Programação Orientada a Objetos","Padrões de Projetos")
+eng_comp.adicionaAresta("a28","Laboratório de Programação Orientada a Objetos","Padrões de Projetos")
+eng_comp.adicionaAresta("a29","Cálculo II","Sinais e Sistemas")
+eng_comp.adicionaAresta("a30","Projeto de Sistemas Digitais","Verificação Funcional de Sistemas Digitais")
+eng_comp.adicionaAresta("a31","Estruturas de Dados e Algoritmos","Análise e Técnicas de Algoritmos")
+eng_comp.adicionaAresta("a32","Padrões de Projetos","Análise e Projeto de Sistemas")
+eng_comp.adicionaAresta("a33","Eletricidade e Eletromagnetismo","Circuitos Eletro-Eletrônicos")
+eng_comp.adicionaAresta("a34","Sinais e Sistemas","Circuitos Eletro-Eletrônicos")
+eng_comp.adicionaAresta("a35","Programação Orientada a Objetos","Teste de Software")
+eng_comp.adicionaAresta("a36","Laboratório de Programação Orientada a Objetos","Teste de Software")
+eng_comp.adicionaAresta("a37","Bancos de Dados","Teste de Software")
+eng_comp.adicionaAresta("a38","Análise e Projeto de Sistemas","Gerência de Projetos")
+eng_comp.adicionaAresta("a39","Desenho Assistido por Computador","Técnicas de Prototipagem")
+eng_comp.adicionaAresta("a40","Métodos Numéricos","Processamento Digital de Sinais")
+eng_comp.adicionaAresta("a41","Sinais e Sistemas","Processamento Digital de Sinais")
+eng_comp.adicionaAresta("a42","Circuitos Eletro-Eletrônicos","Sensores e Atuadores")
+eng_comp.adicionaAresta("a43","Técnicas de Prototipagem","Projeto em Engenharia de Computação I")
+eng_comp.adicionaAresta("a44","Sistemas Operacionais","Sistemas Embarcados")
+eng_comp.adicionaAresta("a45","Microprocessadores e Microcontroladores","Sistemas Embarcados")
+eng_comp.adicionaAresta("a46","Métodos Numéricos","Controle e Automação I")
+eng_comp.adicionaAresta("a47","Circuitos Eletro-Eletrônicos","Controle e Automação I")
+eng_comp.adicionaAresta("a48","Projeto em Engenharia de Computação I","Projeto em Engenharia de Computação II")
+print(eng_comp.topologicalSort())
 
-paraiba.adicionaAresta("a1", "11","21")
-paraiba.adicionaAresta("a2", "14","24")
-paraiba.adicionaAresta("a3", "15","24")
-paraiba.adicionaAresta("a4", "14","25")
-paraiba.adicionaAresta("a5", "15","25")
-paraiba.adicionaAresta("a6", "16","26")
-paraiba.adicionaAresta("a7", "21","31")
-paraiba.adicionaAresta("a8", "24","33")
-paraiba.adicionaAresta("a9", "14","34")
-paraiba.adicionaAresta("a10", "15","34")
-paraiba.adicionaAresta("a11", "14","35")
-paraiba.adicionaAresta("a12", "15","35")
-paraiba.adicionaAresta("a13", "26","36")
-paraiba.adicionaAresta("a14", "21","41")
-paraiba.adicionaAresta("a15", "24","43")
-paraiba.adicionaAresta("a16", "24","44")
-paraiba.adicionaAresta("a17", "36","44")
-paraiba.adicionaAresta("a18", "36","45")
-paraiba.adicionaAresta("a19", "31","51")
-paraiba.adicionaAresta("a20", "31","52")
-paraiba.adicionaAresta("a21", "24","53")
-paraiba.adicionaAresta("a22", "24","54")
-paraiba.adicionaAresta("a23", "36","55")
-paraiba.adicionaAresta("a24", "44","55")
-paraiba.adicionaAresta("a25", "51","61")
-paraiba.adicionaAresta("a26", "43","62")
-paraiba.adicionaAresta("a27", "34","63")
-paraiba.adicionaAresta("a28", "35","63")
-paraiba.adicionaAresta("a29", "31","64")
-paraiba.adicionaAresta("a30", "55","65")
-paraiba.adicionaAresta("a31", "24","72")
-paraiba.adicionaAresta("a32", "63","73")
-paraiba.adicionaAresta("a33", "52","75")
-paraiba.adicionaAresta("a34", "64","75")
-paraiba.adicionaAresta("a35", "34","81")
-paraiba.adicionaAresta("a36", "35","81")
-paraiba.adicionaAresta("a37", "54","81")
-paraiba.adicionaAresta("a38", "73","82")
-paraiba.adicionaAresta("a39", "74","83")
-paraiba.adicionaAresta("a40", "61","84")
-paraiba.adicionaAresta("a41", "64","84")
-paraiba.adicionaAresta("a42", "75","85")
-paraiba.adicionaAresta("a43", "83","92")
-paraiba.adicionaAresta("a44", "44","93")
-paraiba.adicionaAresta("a45", "45","93")
-paraiba.adicionaAresta("a46", "61","94")
-paraiba.adicionaAresta("a47", "75","94")
-paraiba.adicionaAresta("a48", "92","103")
-print(paraiba)
-print(paraiba.topologicalSort())
+const_edificios = MeuGrafo(['Informática Básica','Inglês Instrumental','Português Instrumental','Química Aplicada',
+'Cálculo Diferencial e Integral I','Álgebra Vetorial e Geometria Analítica', 'Desenho Técnico','Introdução a Construção Edifícios',
+'Física I','Metodologia da Pesquisa Científica','Materiais de Construção I','Des. Assist. por Computador I','Cálculo Diferencial e Integral II',
+'Topografia I','Desenho e Projeto Arquitetônico', 'Matemática Financeira Aplicada','Resistência dos Materiais','Física II','Estatística Aplicada',
+'Técnicas Construtivas I','Topografia II','Materiais de Construção II','Des. Assist. por Computador II','Instalações Hidrossanitárias',
+'Instalações Elétricas Pred.','Especificações e Orcamentos I','Segurança do Trabalho','Técnicas Construtivas II',' Estruturas de Concreto I',
+'Mecânica dos Solos','Patologia das Construções','Manutenção Predial','Estruturas Metálicas','Fundações e Sistemas de Contenção',
+'Estruturas de Madeira','Estruturas de Concreto II','Especificações e Orcamentos II','Instalações Especiais',
+'Formação do Empreendedor','Planej.Gestão e Controle de Obra','Legislação Aplicada','Avaliação Pós-ocupação','Gestão da Qualidade e Produtividade',
+'Gestão Ambiental','Administração de Custos','Relações Humanas no Trabalho','Trabalho de Conclusão de Curso','Estágio Supervisionado','Libras (optativa)'])
 
+const_edificios.adicionaAresta("a1","Cálculo Diferencial e Integral I","Física I")
+const_edificios.adicionaAresta("a2","Química Aplicada","Materiais de Construção I")
+const_edificios.adicionaAresta("a3","Informática Básica","Des. Assist. por Computador I")
+const_edificios.adicionaAresta("a4","Desenho Técnico","Des. Assist. por Computador I")
+const_edificios.adicionaAresta("a5","Cálculo Diferencial e Integral I","Cálculo Diferencial e Integral II")
+const_edificios.adicionaAresta("a6","Desenho Técnico","Topografia I")
+const_edificios.adicionaAresta("a7","Desenho Técnico","Desenho e Projeto Arquitetônico")
+const_edificios.adicionaAresta("a8","Cálculo Diferencial e Integral I","Resistência dos Materiais")
+const_edificios.adicionaAresta("a9","Física I","Resistência dos Materiais")
+const_edificios.adicionaAresta("a10","Física I","Física II")
+const_edificios.adicionaAresta("a11","Cálculo Diferencial e Integral II","Física II")
+const_edificios.adicionaAresta("a12","Cálculo Diferencial e Integral I","Estatística Aplicada")
+const_edificios.adicionaAresta("a13","Informática Básica","Técnicas Construtivas I")
+const_edificios.adicionaAresta("a14","Desenho e Projeto Arquitetônico","Técnicas Construtivas I")
+const_edificios.adicionaAresta("a15","Topografia I","Topografia II")
+const_edificios.adicionaAresta("a16","Materiais de Construção I","Materiais de Construção II")
+const_edificios.adicionaAresta("a17","Des. Assist. por Computador I","Des. Assist. por Computador II")
+const_edificios.adicionaAresta("a18","Desenho Técnico","Instalações Hidrossanitárias")
+const_edificios.adicionaAresta("a19","Física I","Instalações Hidrossanitárias")
+const_edificios.adicionaAresta("a20","Desenho Técnico","Instalações Elétricas Pred.")
+const_edificios.adicionaAresta("a21","Física I","Instalações Elétricas Pred.")
+const_edificios.adicionaAresta("a22","Materiais de Construção I","Especificações e Orcamentos I")
+const_edificios.adicionaAresta("a23","Des. Assist. por Computador I","Segurança do Trabalho") #44
+print(const_edificios.topologicalSort())
 unittest.main()
