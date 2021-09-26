@@ -162,7 +162,7 @@ fisica.adicionaAresta("a10","Cálculo Diferencial e Integral I","Física Básica
 fisica.adicionaAresta("a11","Física Básica I","Física Experimental II")
 fisica.adicionaAresta("a12","Física Experimental I","Física Experimental II")
 fisica.adicionaAresta("a13","Cálculo Diferencial e Integral I","Cálculo Diferencial e Integral II")
-fisica.adicionaAresta("a14","Física Básica I","Física Básica III")
+fisica.adicionaAresta("a14","Física Básica II","Física Básica III")
 fisica.adicionaAresta("a15","Física Básica II","Física Experimental III")
 fisica.adicionaAresta("a16","Física Experimental II","Física Experimental III")
 fisica.adicionaAresta("a17","Cálculo Diferencial e Integral I","Cálculo Diferencial e Integral III")
@@ -203,4 +203,60 @@ fisica.adicionaAresta("a51","Língua Portuguesa II","TCC")
 fisica.adicionaAresta("a52","Física Básica IV","Estágio Supervisionado IV")
 fisica.adicionaAresta("a53","Estágio Supervisionado III","Estágio Supervisionado IV")
 print(fisica.topologicalSort())
+
+matematica = MeuGrafo(['Matemática para o Ensino Médio 1','Matemática para o Ensino Fundamental','Trigonometria','História da Educação',
+'Psicologia da Aprendizagem','Língua Portuguesa 1','Inglês Instrumental','Matemática para o Ensino Médio 2','Cálculo 1','Álgebra Vetorial e Geometria Analítica',
+'Epistemologia da Matemática','Filosofia da Educação','Língua Portuguesa 2','Educação em Diversidade','Matemática para o Ensino Médio 3','Cálculo 2',
+'Argumentação Matemática','Prática de Laboratório de Ensino de Matemática 1','Sociologia da Educação','Didática Geral','Álgebra Linear 1','Cálculo 3',
+'Didática da Matemática','Prática de Laboratório de Ensino de Matemática 2','Libras 1','Metodologia do Trabalho Científico','Introdução a Teoria dos Números',
+'Desenho Geométrico','Física Básica 1','Prática de Ensino de Matemática 1','Introdução à Programação','Gestão Educacional e Planejamento',
+'Estágio Supervisionado 1','Estruturas Algébricas 1','Geometria Euclidiana Plana','Estatística e Probabilidade','Prática de Ensino de Matemática 2',
+'Pesquisa Aplicada em Matemática 1','Educação em Direitos Humanos','Estágio Supervisionado 2','Análise Real 1','Matemática Financeira 1',
+'Equações Diferenciais Ordinárias','Prática de Ensino de Matemática 3','Pesquisa Aplicada em Matemática 2','Optativa 1','Estágio Supervisionado 3',
+'Geometria Euclidiana Espacial','TCC','História da Matemática','Prática de Ensino de Matemática 4','Educação Ambiental e Sustentabilidade','Optativa 2',
+'Estágio Supervisionado 4'])
+
+matematica.adicionaAresta("a1","Matemática para o Ensino Médio 1","Matemática para o Ensino Médio 2")
+matematica.adicionaAresta("a2","Matemática para o Ensino Médio 1","Cálculo 1")
+matematica.adicionaAresta("a3","Trigonometria","Cálculo 1")
+matematica.adicionaAresta("a4","Língua Portuguesa 1","Língua Portuguesa 2")
+matematica.adicionaAresta("a5","Matemática para o Ensino Médio 2","Matemática para o Ensino Médio 3")
+matematica.adicionaAresta("a6","Cálculo 1","Cálculo 2")
+matematica.adicionaAresta("a7","Matemática para o Ensino Fundamental","Argumentação Matemática")
+matematica.adicionaAresta("a8","Matemática para o Ensino Fundamental","Prática de Laboratório de Ensino de Matemática 1")
+matematica.adicionaAresta("a9","Matemática para o Ensino Médio 2","Álgebra Linear 1")
+matematica.adicionaAresta("a10","Álgebra Vetorial e Geometria Analítica","Álgebra Linear 1")
+matematica.adicionaAresta("a11","Álgebra Vetorial e Geometria Analítica","Cálculo 3")
+matematica.adicionaAresta("a12","Cálculo 2","Cálculo 3")
+matematica.adicionaAresta("a13","Didática Geral","Didática da Matemática")
+matematica.adicionaAresta("a14","Prática de Laboratório de Ensino de Matemática 1","Prática de Laboratório de Ensino de Matemática 2")
+matematica.adicionaAresta("a15","Educação em Diversidade","Libras 1")
+matematica.adicionaAresta("a16","Argumentação Matemática","Introdução a Teoria dos Números")
+matematica.adicionaAresta("a17","Matemática para o Ensino Fundamental","Desenho Geométrico")
+matematica.adicionaAresta("a18","Cálculo 2","Física Básica 1")
+matematica.adicionaAresta("a19","Prática de Laboratório de Ensino de Matemática 2","Prática de Ensino de Matemática 1")
+matematica.adicionaAresta("a20","Prática de Laboratório de Ensino de Matemática 2","Introdução à Programação")
+matematica.adicionaAresta("a21","Prática de Laboratório de Ensino de Matemática 2","Estágio Supervisionado 1")
+matematica.adicionaAresta("a22","Introdução a Teoria dos Números","Estruturas Algébricas 1")
+matematica.adicionaAresta("a23","Desenho Geométrico","Geometria Euclidiana Plana")
+matematica.adicionaAresta("a24","Cálculo 2","Estatística e Probabilidade")
+matematica.adicionaAresta("a25","Prática de Ensino de Matemática 1","Prática de Ensino de Matemática 2")
+matematica.adicionaAresta("a26","Metodologia do Trabalho Científico","Pesquisa Aplicada em Matemática 1")
+matematica.adicionaAresta("a27","Estágio Supervisionado 1","Estágio Supervisionado 2")
+matematica.adicionaAresta("a28","Cálculo 3","Análise Real 1")
+matematica.adicionaAresta("a29","Cálculo 1","Matemática Financeira 1")
+matematica.adicionaAresta("a30","Álgebra Linear 1","Equações Diferenciais Ordinárias")
+matematica.adicionaAresta("a31","Cálculo 3","Equações Diferenciais Ordinárias")
+matematica.adicionaAresta("a32","Prática de Ensino de Matemática 2","Prática de Ensino de Matemática 3")
+matematica.adicionaAresta("a33","Pesquisa Aplicada em Matemática 1","Pesquisa Aplicada em Matemática 2")
+matematica.adicionaAresta("a34","Estágio Supervisionado 2","Estágio Supervisionado 3")
+matematica.adicionaAresta("a35","Geometria Euclidiana Plana","Geometria Euclidiana Espacial")
+matematica.adicionaAresta("a36","Pesquisa Aplicada em Matemática 2","TCC")
+matematica.adicionaAresta("a37","Cálculo 2","História da Matemática")
+matematica.adicionaAresta("a38","Prática de Ensino de Matemática 3","Prática de Ensino de Matemática 4")
+matematica.adicionaAresta("a39","Estágio Supervisionado 3","Estágio Supervisionado 4")
+print(matematica.topologicalSort())
+
+letras = MeuGrafo(['Estágio Supervisionado 4','Introdução à Linguistica','Leitura e Produção de Texto I','Informática Básica','Fundamentos da Educação a Distância',
+'Inglês Instrumental','História da Educação Brasileira','Teoria Literária I',''])
 unittest.main()
