@@ -1,10 +1,13 @@
 from bibgrafo.grafo_matriz_adj_dir import GrafoMatrizAdjacenciaDirecionado
 from bibgrafo.grafo_exceptions import *
-from copy import deepcopy
 
 class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
 
     def topologicalSort(self):
+        """
+        Algoritmo de Kahn para ordenação topológica.
+        :return: Vértices do grafo analisado ordenados topologicamente.
+        """
 
         in_degree = [0]*(len(self.N))
 
